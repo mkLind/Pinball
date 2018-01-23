@@ -10,48 +10,71 @@ public class PlungerBehavior : MonoBehaviour {
     public float plungerEnergy = 0f;
     public string inputName;
     Vector3 restPos;
+    Vector3 curPos;
     Rigidbody plunger;
     Rigidbody plungerBase;
     SpringJoint joint;
     bool collidesWithPlunger = false;
-
+    RigidbodyConstraints origConstr;
 
 	// Use this for initialization
 	void Start () {
         joint = new SpringJoint();
         plunger = GetComponent<Rigidbody>();
         plunger.freezeRotation = true;
+        origConstr = plunger.constraints; // Y frozen from unity, others free
+        // Freeze y and z of the plunger
+        plunger.constraints = RigidbodyConstraints.FreezePositionZ;
         plunger.constraints = RigidbodyConstraints.FreezePositionY;
+        // PLungers rest position
         restPos = plunger.position;
-        plunger.velocity = new Vector3(0, 0, 0);
+
+
+
      
-     
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
-        if (Input.GetKeyDown(KeyCode.S) == true)
+        // if s is pressed
+        if (Input.GetAxis(inputName)==1)
         {
-            if (currentPos > -200)
+            // If current position of the plunger is greater than the max position
+            if (currentPos > maxPos)
             {
+                // free Z and move the plunger while reducing position and adding energy to plunger
+                plunger.constraints = origConstr;
                 plunger.MovePosition(transform.position - transform.forward * Time.deltaTime);
                 currentPos--;
-                plungerEnergy = plungerEnergy + 10f;
+                plungerEnergy = plungerEnergy + 25f;
+                curPos = plunger.position; // Store current position
+
+            }
+            else {
+                // Freeze y and z and set position to current position
+                plunger.constraints = RigidbodyConstraints.FreezePositionZ;
+                plunger.constraints = RigidbodyConstraints.FreezePositionY;
+                plunger.position = curPos;
 
             }
         }
 
-        else
+        else 
         {
-            if (currentPos < 0)
+            // if plunger going up
+            if (currentPos < minPos)
             {
+                // release Z, move and add to position while reducing energy
+                plunger.constraints = origConstr;
                 plunger.MovePosition(transform.position + transform.forward * Time.deltaTime * (plungerEnergy / 100));
                 currentPos++;
-                plungerEnergy -= 10f;
+                plungerEnergy -= 25f;
             }
             else
             {
+                // freeze y and z set position to rest and energy to 0.
+                plunger.constraints = RigidbodyConstraints.FreezePositionZ;
+                plunger.constraints = RigidbodyConstraints.FreezePositionY;
                 plungerEnergy = 0f;
                 plunger.position = restPos;
 
