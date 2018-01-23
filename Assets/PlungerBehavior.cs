@@ -11,20 +11,27 @@ public class PlungerBehavior : MonoBehaviour {
     public string inputName;
     Vector3 restPos;
     Rigidbody plunger;
+    Rigidbody plungerBase;
+    SpringJoint joint;
+    bool collidesWithPlunger = false;
+
 
 	// Use this for initialization
 	void Start () {
+        joint = new SpringJoint();
         plunger = GetComponent<Rigidbody>();
         plunger.freezeRotation = true;
         plunger.constraints = RigidbodyConstraints.FreezePositionY;
         restPos = plunger.position;
         plunger.velocity = new Vector3(0, 0, 0);
+     
+     
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
-        if (Input.GetAxis(inputName) == 1)
+
+        if (Input.GetKeyDown(KeyCode.S) == true)
         {
             if (currentPos > -200)
             {
@@ -34,19 +41,23 @@ public class PlungerBehavior : MonoBehaviour {
 
             }
         }
-        else {
 
+        else
+        {
             if (currentPos < 0)
             {
-                plunger.MovePosition(transform.position + transform.forward * Time.deltaTime*(plungerEnergy/100));
+                plunger.MovePosition(transform.position + transform.forward * Time.deltaTime * (plungerEnergy / 100));
                 currentPos++;
+                plungerEnergy -= 10f;
             }
-            else {
+            else
+            {
                 plungerEnergy = 0f;
                 plunger.position = restPos;
-                
+
             }
         }
+      
         
 		
 	}
@@ -59,6 +70,25 @@ public class PlungerBehavior : MonoBehaviour {
         }
 
 
+    }
+
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Ball")) {
+            collidesWithPlunger = true;
+
+        }
+
+
+
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.CompareTag("Ball"))
+        {
+            collidesWithPlunger = false;
+
+        }
     }
 
 }
