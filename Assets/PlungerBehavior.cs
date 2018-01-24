@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlungerBehavior : MonoBehaviour {
     public float minPos = 0f;
     public float currentPos = 0f;
-    public float maxPos = -200f;
+    public float maxPos = -0f;
    
     public float plungerEnergy = 0f;
-    public float plungerAddition = 0f;
+    public float plungerEnergyAddition = 0f;
     public bool forceApplied = false;
     public string inputName;
     //public Vector3 curPos;
@@ -49,10 +49,11 @@ public class PlungerBehavior : MonoBehaviour {
             if (plunger.position.z > maxPos)
             {
                 // free Z and move the plunger while reducing position and adding energy to plunger
+                //=> plunger moves downwards because of this
                 plunger.constraints = origConstr;
                 plunger.MovePosition(transform.position - transform.forward * Time.deltaTime);
                 currentPos = plunger.position.z;
-                plungerEnergy = plungerEnergy + plungerAddition;
+                plungerEnergy = plungerEnergy + plungerEnergyAddition;
                 curPos = plunger.position; // Store current position
               
                 
@@ -69,6 +70,7 @@ public class PlungerBehavior : MonoBehaviour {
 
         else 
         {
+            // Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
             if (!forceApplied) {
                 plunger.AddForce(transform.forward*plungerEnergy);
                 forceApplied = true;
@@ -81,7 +83,7 @@ public class PlungerBehavior : MonoBehaviour {
                 plunger.MovePosition(transform.position + transform.forward  * Time.deltaTime);
                 currentPos = plunger.position.z;
               
-                plungerEnergy -= plungerAddition;
+                plungerEnergy -= plungerEnergyAddition;
             }
             else
             {
@@ -99,33 +101,6 @@ public class PlungerBehavior : MonoBehaviour {
 		
 	}
 
-    private void addImpulse(Rigidbody other, float force) {
-        if (other.CompareTag("Ball")) {
-            other.AddForce(transform.forward * force);
-
-
-        }
-
-
-    }
-
-
-    private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Ball")) {
-            collidesWithPlunger = true;
-
-        }
-
-
-
-    }
-
-    private void OnTriggerExit(Collider other) {
-        if (other.gameObject.CompareTag("Ball"))
-        {
-            collidesWithPlunger = false;
-
-        }
-    }
+    
 
 }
