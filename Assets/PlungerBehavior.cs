@@ -8,7 +8,10 @@ public class PlungerBehavior : MonoBehaviour {
     public float maxPos = -200f;
    
     public float plungerEnergy = 0f;
+    public float plungerAddition = 0f;
+    public bool forceApplied = false;
     public string inputName;
+    //public Vector3 curPos;
     Vector3 restPos;
     Vector3 curPos;
     Rigidbody plunger;
@@ -16,9 +19,11 @@ public class PlungerBehavior : MonoBehaviour {
     SpringJoint joint;
     bool collidesWithPlunger = false;
     RigidbodyConstraints origConstr;
+  
 
 	// Use this for initialization
 	void Start () {
+        
         joint = new SpringJoint();
         plunger = GetComponent<Rigidbody>();
         plunger.freezeRotation = true;
@@ -28,10 +33,11 @@ public class PlungerBehavior : MonoBehaviour {
         plunger.constraints = RigidbodyConstraints.FreezePositionY;
         // PLungers rest position
         restPos = plunger.position;
+      
+        
 
 
 
-     
     }
 	
 	// Update is called once per frame
@@ -40,14 +46,16 @@ public class PlungerBehavior : MonoBehaviour {
         if (Input.GetAxis(inputName)==1)
         {
             // If current position of the plunger is greater than the max position
-            if (currentPos > maxPos)
+            if (plunger.position.z > maxPos)
             {
                 // free Z and move the plunger while reducing position and adding energy to plunger
                 plunger.constraints = origConstr;
                 plunger.MovePosition(transform.position - transform.forward * Time.deltaTime);
-                currentPos--;
-                plungerEnergy = plungerEnergy + 25f;
+                currentPos = plunger.position.z;
+                plungerEnergy = plungerEnergy + plungerAddition;
                 curPos = plunger.position; // Store current position
+              
+                
 
             }
             else {
@@ -61,14 +69,19 @@ public class PlungerBehavior : MonoBehaviour {
 
         else 
         {
+            if (!forceApplied) {
+                plunger.AddForce(transform.forward*plungerEnergy);
+                forceApplied = true;
+            }
             // if plunger going up
-            if (currentPos < minPos)
+            if (plunger.position.z < minPos)
             {
                 // release Z, move and add to position while reducing energy
                 plunger.constraints = origConstr;
-                plunger.MovePosition(transform.position + transform.forward * Time.deltaTime * (plungerEnergy / 100));
-                currentPos++;
-                plungerEnergy -= 25f;
+                plunger.MovePosition(transform.position + transform.forward  * Time.deltaTime);
+                currentPos = plunger.position.z;
+              
+                plungerEnergy -= plungerAddition;
             }
             else
             {
@@ -77,7 +90,8 @@ public class PlungerBehavior : MonoBehaviour {
                 plunger.constraints = RigidbodyConstraints.FreezePositionY;
                 plungerEnergy = 0f;
                 plunger.position = restPos;
-
+                forceApplied = false;
+ 
             }
         }
       
