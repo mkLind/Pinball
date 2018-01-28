@@ -9,18 +9,16 @@ public class StoryTrigger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        // Position the window and set the story element to un triggered state
         windowR = new Rect((Screen.width/2)-200, 50, 400, 100);
         triggered = false;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+// Event handling. Add buttons, their shapes and what they do
     void DoMyWindow(int windowID) {
         if (GUI.Button(new Rect(150, 30, 100, 20), "RUN")) {
-            Time.timeScale = 1;
-            triggered = false;
+            Time.timeScale = 1; // Enable rendering
+            triggered = false; // Set to untriggered statew
 
         } else if (GUI.Button(new Rect(150, 60, 100, 20), "Fight")) {
             Time.timeScale = 1;
@@ -28,6 +26,10 @@ public class StoryTrigger : MonoBehaviour {
         }
 
     }
+
+
+
+    // When the Story element gets triggered, Show the UI Window
    void OnGUI()
     {
         if (triggered) {
@@ -35,14 +37,14 @@ public class StoryTrigger : MonoBehaviour {
         }
 
     }
-
+    // Set the element to triggered state and freeze the scene
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Ball"))
         {
 
             triggered = true;
-            Time.timeScale = 0;
+            Time.timeScale = 0; // scene freezes 
             
 
         }
