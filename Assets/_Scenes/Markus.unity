@@ -1397,7 +1397,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1049612935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.36, y: 0.06, z: 4.73}
+  m_LocalPosition: {x: -0.66, y: -0.01, z: 5.43}
   m_LocalScale: {x: 1, y: -0.021494888, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1421,6 +1421,10 @@ MonoBehaviour:
     width: 120
     height: 50
   triggered: 0
+  followingPromptId: 
+  followingPrompt: 
+  Text: 
+  options: []
 --- !u!1 &1074591052
 GameObject:
   m_ObjectHideFlags: 0

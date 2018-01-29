@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<prompts>
+<prompt id = "s1">
+<text>"There is a door in front of you. What do you do?"</text>
+<option >"Break it"</option>
+<option >"Pick the lock"</option>
+<next>s2</next>
+</prompt>
+<prompt id = "s2">
+<text>"You encountered a troll. What do you do?"</text>
+<option>"Fight it"</option>
+<option>"Run"</option>
+<next>s1</next>
+</prompt>
+</prompts>
