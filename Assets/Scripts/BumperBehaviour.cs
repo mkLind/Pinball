@@ -11,7 +11,7 @@ public class BumperBehaviour : MonoBehaviour {
 	{
 		if (col.GetComponent<Rigidbody>() != null) 
 		{
-			//Force to a forward direction (Z-axis of the BumperTrigger) is added 
+			//Force to a forward direction (Z-axis of the trigger) is added 
 			//to the collision component that has a rigidbody (the ball)
 			col.GetComponent<Rigidbody>().AddForce (transform.forward * force);
 		}
