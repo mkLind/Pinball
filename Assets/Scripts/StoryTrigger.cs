@@ -9,7 +9,7 @@ public class StoryTrigger : MonoBehaviour {
   
     public Rect windowR = new Rect(100,50,2000,1000);
     public bool triggered;
-    public string followingPromptId;
+    public string followingPromptId = "s1";
     public string followingPrompt;
     XmlNodeList list;
     public string Text;
@@ -39,7 +39,7 @@ public class StoryTrigger : MonoBehaviour {
 	
 // Event handling. Add buttons, their shapes and what they do
     void DoMyWindow(int windowID) {
-        FetchText(followingPromptId);
+        
 
         if (GUI.Button(new Rect(150, 30, 100, 20), options[0])) {
             Time.timeScale = 1; // Enable rendering
@@ -64,6 +64,7 @@ public class StoryTrigger : MonoBehaviour {
    void OnGUI()
     {
         if (triggered) {
+            FetchText(followingPromptId);
             windowR = GUI.Window(0, windowR, DoMyWindow, Text);
         }
 
@@ -114,7 +115,7 @@ public class StoryTrigger : MonoBehaviour {
                     // Fetch the next story element Id.
                     if (text.Name == "next") {
                         followingPromptId = text.InnerText;
-
+                        break;
                     }
 
 
