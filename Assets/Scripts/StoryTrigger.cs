@@ -64,7 +64,7 @@ public class StoryTrigger : MonoBehaviour {
    void OnGUI()
     {
         if (triggered) {
-            FetchText(followingPromptId);
+            
             windowR = GUI.Window(0, windowR, DoMyWindow, Text);
         }
 
@@ -74,7 +74,7 @@ public class StoryTrigger : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-
+            FetchText(followingPromptId);
             triggered = true;
             Time.timeScale = 0; // scene freezes 
             

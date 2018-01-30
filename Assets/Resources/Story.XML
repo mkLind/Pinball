@@ -10,6 +10,12 @@
 <text>"You encountered a troll. What do you do?"</text>
 <option>"Fight it"</option>
 <option>"Run"</option>
+<next>s3</next>
+</prompt>
+<prompt id = "s3">
+<text>"You are in a trap room"</text>
+<option>"Storm through"</option>
+<option>"Proceed with caution"</option>
 <next>s1</next>
 </prompt>
 </prompts>
