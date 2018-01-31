@@ -6,7 +6,7 @@ public class FlipperBehavior : MonoBehaviour {
     // Publics visible in unity
     public float restPosition = 0f;
     public float pressedPosition = 45f;
-    public float hitStrength = 10000f;
+    public float hitStrength = 1000000f;
     public float flipDamper = 150f;
     // Name for the pressed key
     public string inputName;
