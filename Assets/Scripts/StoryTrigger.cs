@@ -9,11 +9,15 @@ public class StoryTrigger : MonoBehaviour {
   
     public Rect windowR = new Rect(100,50,2000,1000);
     public bool triggered;
-    public string followingPromptId = "s1";
+    public static string followingPromptId = "s1";
+    public string option1id;
+    public string option2id;
+
     public string followingPrompt;
     XmlNodeList list;
     public string Text;
     public List<string> options;
+    public List<string> optionId;
     
 
 
@@ -23,6 +27,8 @@ public class StoryTrigger : MonoBehaviour {
         windowR = new Rect((Screen.width/2)-200, 50, 400, 100);
         triggered = false;
         followingPromptId = "s1";
+        option1id = "s1";
+        option2id = "s1";
 
 
         string loadFrom = Application.dataPath + @"/Resources/Story.XML"; // ÅAth for loading the STORY xml
@@ -34,6 +40,8 @@ public class StoryTrigger : MonoBehaviour {
         // COntainers for changing options ant text
         Text = "";
         options = new List<string>();
+        optionId = new List<string>();
+
         
     }
 	
@@ -47,13 +55,15 @@ public class StoryTrigger : MonoBehaviour {
             // Clear text and options 
             Text = "";
             options = new List<string>();
-
+            followingPromptId = optionId[0];
+            optionId = new List<string>();
         } else if (GUI.Button(new Rect(150, 60, 100, 20), options[1])) {
             Time.timeScale = 1;
             triggered = false;
-
+            followingPromptId = optionId[1];
             Text = "";
             options = new List<string>();
+            optionId = new List<string>();
         }
 
     }
@@ -109,14 +119,15 @@ public class StoryTrigger : MonoBehaviour {
                     }
                     // Fetch button options
                     if (text.Name == "option") {
-                        options.Add(text.InnerText);
+                        options.Add(text.Attributes["text"].Value);
+                        XmlNode next;
+                        next = text.FirstChild;
+                        optionId.Add(next.InnerText);
+               
+
 
                     }
-                    // Fetch the next story element Id.
-                    if (text.Name == "next") {
-                        followingPromptId = text.InnerText;
-                        break;
-                    }
+               
 
 
 
