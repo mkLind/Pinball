@@ -16,15 +16,15 @@ public class PlungerBehavior : MonoBehaviour {
     Vector3 curPos;
     Rigidbody plunger;
     Rigidbody plungerBase;
-    SpringJoint joint;
-    bool collidesWithPlunger = false;
+   
+  
     RigidbodyConstraints origConstr;
   
 
 	// Use this for initialization
 	void Start () {
         
-        joint = new SpringJoint();
+       
         plunger = GetComponent<Rigidbody>();
         plunger.freezeRotation = true;
         origConstr = plunger.constraints; // Y frozen from unity, others free
