@@ -47,4 +47,8 @@ public class BallBehaviour : MonoBehaviour {
 			}	
 		}
 	}
+    public int getScore() {
+        return score;
+    }
+    
 }

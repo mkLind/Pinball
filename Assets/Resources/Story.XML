@@ -4,80 +4,80 @@
 <prompt id = "s1">
 <text>"There is a door in front of you. What do you do"</text>
 <option text ="Break it">
-  <next num="1">s2</next>
+  <next task="bumpers" cond ="500">s2</next>
 </option>
 <option text ="Pick the lock">
-  <next num="2">s3</next>
+  <next task="bumpers" cond ="500">s3</next>
 </option>
 </prompt>
   
   <prompt id = "s2">
     <text>"You encountered a troll. What do you do?"</text>
     <option text =" Fight it!">
-      <next>s3</next>
+      <next task="bumpers" cond ="500">s3</next>
     </option>
     <option text ="Run">
-      <next>s3</next>
+      <next task="bumpers" cond ="500">s3</next>
     </option>
   </prompt>
 
   <prompt id = "s3">
     <text>"You are in a great hall. There is a door and a set of stairs"+"\n"+" at the end of the hall. What do you do? "</text>
     <option text =" Take the stairs">
-      <next>s4</next>
+      <next task="bumpers" cond ="500">s4</next>
     </option>
     <option text ="Go through the door">
-      <next>s5</next>
+      <next task="bumpers" cond ="500">s5</next>
     </option>
   </prompt>
 
   <prompt id = "s4">
     <text>" You encountered an Orc that immediately attacks. How do you react? "</text>
     <option text ="Dodge and fight back">
-      <next>s4.1</next>
+      <next task="bumpers" cond ="500">s4.1</next>
     </option>
     <option text ="Dodge and flee">
-      <next>s4.2</next>
+      <next task="bumpers" cond ="500">s4.2</next>
     </option>
   </prompt>
 
   <prompt id = "s5">
     <text>"Behind the door there is a suspicious corridor. How do you proceed? "</text>
     <option text ="Run through the corridor">
-      <next>s6</next>
+      <next task="bumpers" cond ="500">s6</next>
     </option>
     <option text ="Carefully sneak through the corridor">
-      <next>s7</next>
+      <next task="bumpers" cond ="500">s7</next>
     </option>
   </prompt>
 
   <prompt id = "s6">
     <text>"Yout carelessness set off a trap. You died."</text>
     <option text ="Start over">
-      <next>s1</next>
+      <next task="bumpers" cond ="500">s1</next>
     </option>
     <option text ="Exit the game">
-      <next>s2</next>
+      <next task="bumpers" cond ="500">s2</next>
     </option>
   </prompt>
 
   <prompt id = "s4.1">
     <text>"The orc was slain. You go through a door that is at the other end of the room." +"\n"+ " On the other side you see a dragon keeping a princess prisoner."</text>
     <option text ="Try to approach the princess">
-      <next>s8</next>
+      <next task="bumpers" cond ="500">s8</next>
     </option>
     <option text ="Try to attack the dragon">
-      <next>s9</next>
+      <next task="bumpers" cond ="500">s9</next>
     </option>
   </prompt>
   
   <prompt id = "s4.2">
     <text>" The orc wounded you badly. You managed to flee through a door at the end of the room." +"\n"+"On the other side you see a dragon keeping a princess prisoner.""</text>
     <option text ="Try to talk to the dragon">
-      <next>s8</next>
+      <next task="bumpers" cond ="500">s8</next>
     </option>
     <option text ="Try to attack the dragon">
-      <next>s9</next>
+      <next task="bumpers" cond ="500">s9</next>
     </option>
   </prompt>
 
@@ -86,10 +86,10 @@
   <prompt id = "s7">
     <text>"At the end of the corridor you see ladder."+"\n"+" You climb up the ladder and on the second floor you see a dragon keeping a princess prisoner. "</text>
     <option text ="Try to talk to the dragon">
-      <next>s8</next>
+      <next task="bumpers" cond ="500">s8</next>
     </option>
     <option text ="Try to attack the dragon">
-      <next>s8</next>
+      <next task="bumpers" cond ="500">s8</next>
     </option>
   </prompt>
 
@@ -97,10 +97,10 @@
   <prompt id = "s8">
     <text>"The dragon attacks. Where do you strike?"</text>
     <option text ="Aim for its heart.">
-      <next>s10</next>
+      <next task="bumpers" cond ="500"> s10</next>
     </option>
     <option text ="Aim for its head.">
-      <next>s11</next>
+      <next task="bumpers" cond ="500">s11</next>
     </option>
   </prompt>
 
@@ -108,20 +108,20 @@
   <prompt id = "s10">
     <text>"You killed the dragon. All is well again."</text>
     <option text ="Start over">
-      <next>s1</next>
+      <next task="bumpers" cond ="500">s1</next>
     </option>
     <option text ="Exit the game">
-      <next>s2</next>
+      <next task="bumpers" cond ="500">s2</next>
     </option>
   </prompt>
 
   <prompt id = "s11">
     <text>"You missed and the dragon spits fire at you. There's nothing you can do anymore."</text>
     <option text ="Start over">
-      <next>s1</next>
+      <next task="bumpers" cond ="500">s1</next>
     </option>
     <option text ="Exit game">
-      <next>s2</next>
+      <next task="bumpers" cond ="500">s2</next>
     </option>
   </prompt>
 
