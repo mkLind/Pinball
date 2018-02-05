@@ -18,9 +18,7 @@ public class VariableContainer : MonoBehaviour {
         trig = GameObject.Find("StoryElement").GetComponent<StoryTrigger>();
         bll = GameObject.Find("Ball").GetComponent<BallBehaviour>();
 
-        taskActive = false;
-        currentScore = 0;
-        targetScore = 0;
+       
      
  
 	}

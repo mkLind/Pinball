@@ -14,6 +14,7 @@ public class StoryTrigger : MonoBehaviour {
     public string option1id;
     public string option2id;
     public VariableContainer cont;
+    public BallBehaviour behav;
     public string followingPrompt;
     XmlNodeList list;
     public string Text;
@@ -40,6 +41,7 @@ public class StoryTrigger : MonoBehaviour {
         currentTask = "";
         currentCondition = "";
         cont = GameObject.Find("Table").GetComponent<VariableContainer>();
+        behav = GameObject.Find("Ball").GetComponent<BallBehaviour>();
 
 
         string loadFrom = Application.dataPath + @"/Resources/Story.XML"; // ÅAth for loading the STORY xml
@@ -123,7 +125,7 @@ public class StoryTrigger : MonoBehaviour {
     // Set the element to triggered state and freeze the scene
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Ball") && active)
+        if (other.gameObject.CompareTag("Ball") && !behav.taskStatus())
         {
             FetchText(followingPromptId);
             triggered = true;
