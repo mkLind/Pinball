@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -89,7 +89,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: 5f143bf0317e6b1498b3439d9ee9f175,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -605,12 +606,18 @@ MonoBehaviour:
     width: 120
     height: 50
   triggered: 0
+  active: 0
   option1id: 
   option2id: 
+  cont: {fileID: 0}
   followingPrompt: 
   Text: 
   options: []
   optionId: []
+  task: []
+  condition: []
+  currentTask: 
+  currentCondition: 
 --- !u!23 &300625231
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -672,7 +679,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 300625229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.78, y: -0.01, z: 4.16}
+  m_LocalPosition: {x: -2.35, y: -0.01, z: 4.79}
   m_LocalScale: {x: 1, y: -0.021494888, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1179,7 +1186,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4293479690024920, guid: 37ae54ee7806f644e91dac75228a0c6f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.2
+      value: 4.29
       objectReference: {fileID: 0}
     - target: {fileID: 4293479690024920, guid: 37ae54ee7806f644e91dac75228a0c6f, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1187,7 +1194,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4293479690024920, guid: 37ae54ee7806f644e91dac75228a0c6f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.291
+      value: 0.61
       objectReference: {fileID: 0}
     - target: {fileID: 4293479690024920, guid: 37ae54ee7806f644e91dac75228a0c6f, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1228,6 +1235,11 @@ Prefab:
       propertyPath: ballAmountText
       value: 
       objectReference: {fileID: 173877427}
+    - target: {fileID: 114286049691731852, guid: 37ae54ee7806f644e91dac75228a0c6f,
+        type: 2}
+      propertyPath: ballAmount
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37ae54ee7806f644e91dac75228a0c6f, type: 2}
   m_IsPrefabParent: 0

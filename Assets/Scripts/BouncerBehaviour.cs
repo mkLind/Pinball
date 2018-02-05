@@ -19,7 +19,7 @@ public class BouncerBehaviour : MonoBehaviour {
 
 			//Incrementing score that's in the ball script
 			BallBehaviour bb = col.gameObject.GetComponent<BallBehaviour>();
-			bb.score = bb.score + 50;
+			bb.score = bb.score + 100;
 		}
 	}
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class BallBehaviour : MonoBehaviour {
 
 	public int score;
-	public int ballAmount;
+	public int ballAmount;		//change in inspector
 	public Text scoreText;
 	public Text ballAmountText;
 
@@ -15,11 +15,10 @@ public class BallBehaviour : MonoBehaviour {
 
 	void Start () {
 		score = 0;
-		ballAmount = 2;
 		scoreText.text = "Score: " + score.ToString ();
 		ballAmountText.text = "Balls: " + ballAmount.ToString ();
-		//Initial starting position
 		threshold = -5f;
+		//Initial starting position
 		startPosition = new Vector3 (4.2f, 0.25f, 0.3f);
 	}
 
@@ -29,7 +28,7 @@ public class BallBehaviour : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		//Checks if the ball falls out of the board
+		//Checks if the ball falls out of the board (goes below the treshold)
 		if (transform.position.y < threshold) 
 		{
 			//Updating the amount of balls
@@ -44,6 +43,7 @@ public class BallBehaviour : MonoBehaviour {
 			} else {
 				//When out of balls
 				Destroy (this);
+				//endscreen...
 			}	
 		}
 	}
