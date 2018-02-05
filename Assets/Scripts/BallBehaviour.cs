@@ -12,12 +12,14 @@ public class BallBehaviour : MonoBehaviour {
 
 	public float threshold;
 	public Vector3 startPosition;
+    public bool taskActive;
 
 	void Start () {
 		score = 0;
 		scoreText.text = "Score: " + score.ToString ();
 		ballAmountText.text = "Balls: " + ballAmount.ToString ();
 		threshold = -5f;
+        taskActive = false;
 		//Initial starting position
 		startPosition = new Vector3 (4.2f, 0.25f, 0.3f);
 	}
@@ -26,8 +28,24 @@ public class BallBehaviour : MonoBehaviour {
 	void Update () {
 		scoreText.text = "Score: " + score.ToString ();
 	}
+    public void setTaskActive() {
+        taskActive = true;
+        
+    }
 
-	void FixedUpdate () {
+    public void disableTask()
+    {
+        taskActive = false;
+
+    }
+
+    public bool taskStatus() {
+
+        return taskActive;
+
+
+    }
+    void FixedUpdate () {
 		//Checks if the ball falls out of the board (goes below the treshold)
 		if (transform.position.y < threshold) 
 		{

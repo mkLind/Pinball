@@ -39,7 +39,7 @@ public class StoryTrigger : MonoBehaviour {
      
         currentTask = "";
         currentCondition = "";
-        cont = GetComponent<VariableContainer>();
+        cont = GameObject.Find("Table").GetComponent<VariableContainer>();
 
 
         string loadFrom = Application.dataPath + @"/Resources/Story.XML"; // ÅAth for loading the STORY xml
@@ -88,7 +88,7 @@ public class StoryTrigger : MonoBehaviour {
             task = new List<string>();
             condition = new List<string>();
 
-            cont.setTaskAndCond(currentTask, currentCondition);
+            cont.SetTaskAndCond(currentTask, currentCondition);
 
         } else if (GUI.Button(new Rect(150, 60, 100, 20), options[1])) {
 
@@ -104,7 +104,7 @@ public class StoryTrigger : MonoBehaviour {
             optionId = new List<string>();
             task = new List<string>();
             condition = new List<string>();
-            cont.setTaskAndCond(currentTask, currentCondition);
+            cont.SetTaskAndCond(currentTask, currentCondition);
         }
 
     }

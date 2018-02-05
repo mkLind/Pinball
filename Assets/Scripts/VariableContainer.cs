@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class VariableContainer : MonoBehaviour {
-    private StoryTrigger trig;
-    private BallBehaviour bll;
+    public StoryTrigger trig;
+    public BallBehaviour bll;
+   
     public string task = "";
     public string cond = "";
-    public int bumpCond = 0;
+    public int bumpCond;
     public int targetScore;
     public int currentScore;
     public bool taskActive;
 
 
 	void Start () {
-        trig = GetComponent<StoryTrigger>();
-        bll = GetComponent<BallBehaviour>();
-        taskActive = false;
-        targetScore = 0;
-        currentScore = 0;
+        trig = GameObject.Find("StoryElement").GetComponent<StoryTrigger>();
+        bll = GameObject.Find("Ball").GetComponent<BallBehaviour>();
 
+        taskActive = false;
+        currentScore = 0;
+        targetScore = 0;
+     
+ 
 	}
-    public void setTaskAndCond(string task, string cond) {
+    public void SetTaskAndCond(string task, string cond) {
         this.task = task;
         this.cond = cond;
 
@@ -33,14 +36,17 @@ public class VariableContainer : MonoBehaviour {
 	void Update () {
 
         
-        if (task != "" && cond != "" && !taskActive) {
-            if (task == "bumper") {
+        if (task != "" && cond != "" && !bll.taskStatus()) {
+            if (task == "bumpers") {
 
                 bumpCond = int.Parse(cond);
 
                 currentScore = bll.getScore();
                 targetScore = currentScore + bumpCond;
                 taskActive = true;
+                bll.setTaskActive();
+               
+
                 trig.disable();
             }
 
@@ -49,14 +55,18 @@ public class VariableContainer : MonoBehaviour {
 
 
         }
-        if (taskActive) {
-            if (task =="bumper") {
+        if (bll.taskStatus()) {
+            if (task =="bumpers") {
                 currentScore = bll.getScore();
 
                 if (currentScore >= targetScore ) {
                     task = "";
                     cond = "";
                     taskActive = false;
+                    bll.disableTask();
+                    currentScore = 0;
+                    targetScore = 0;
+
 
                     trig.setEnabled();
 
