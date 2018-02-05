@@ -9,6 +9,7 @@ public class BallBehaviour : MonoBehaviour {
 	public int ballAmount;		//change in inspector
 	public Text scoreText;
 	public Text ballAmountText;
+   
 
 	public float threshold;
 	public Vector3 startPosition;
@@ -18,6 +19,7 @@ public class BallBehaviour : MonoBehaviour {
 		score = 0;
 		scoreText.text = "Score: " + score.ToString ();
 		ballAmountText.text = "Balls: " + ballAmount.ToString ();
+     
 		threshold = -5f;
         taskActive = false;
 		//Initial starting position

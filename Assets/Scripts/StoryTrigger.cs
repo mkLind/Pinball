@@ -138,11 +138,13 @@ public class StoryTrigger : MonoBehaviour {
         
     }
     public void setEnabled() {
-        
 
+        GameObject.Find("StoryElement").GetComponent<Renderer>().material.color = Color.white;
         active = true;
     }
     public void disable() {
+        GameObject.Find("StoryElement").GetComponent<Renderer>().material.color = Color.black;
+        
         active = false;
     }
     public bool isEnabled() {

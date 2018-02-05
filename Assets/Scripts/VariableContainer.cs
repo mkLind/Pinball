@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VariableContainer : MonoBehaviour {
     public StoryTrigger trig;
@@ -12,12 +13,12 @@ public class VariableContainer : MonoBehaviour {
     public int targetScore;
     public int currentScore;
     public bool taskActive;
-
+    public Text tasktext;
 
 	void Start () {
         trig = GameObject.Find("StoryElement").GetComponent<StoryTrigger>();
         bll = GameObject.Find("Ball").GetComponent<BallBehaviour>();
-
+        tasktext.text = "Task: Hit a story panel."; // Set initial task text
        
      
  
@@ -36,15 +37,15 @@ public class VariableContainer : MonoBehaviour {
         // Set the task 
         if (task != "" && cond != "" && !bll.taskStatus()) {
             if (task == "bumpers") {
-
+                
                 bumpCond = int.Parse(cond);
-
+                tasktext.text = "Task: Raise your score with " + cond + " points." ; // set the task text to indicate score challenge
                 currentScore = bll.getScore();
                 targetScore = currentScore + bumpCond;
                 taskActive = true;
                 bll.setTaskActive();
-               
 
+                
                 trig.disable();
             }
 
@@ -66,6 +67,7 @@ public class VariableContainer : MonoBehaviour {
                 if (currentScore >= targetScore ) {
                     task = "";
                     cond = "";
+                    tasktext.text = "Task: Hit a story panel.";
                     taskActive = false;
                     bll.disableTask();
                     currentScore = 0;
@@ -73,7 +75,7 @@ public class VariableContainer : MonoBehaviour {
 
 
                     trig.setEnabled();
-
+                   
                 }
 
 
