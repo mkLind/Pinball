@@ -33,7 +33,7 @@ public class VariableContainer : MonoBehaviour {
 
 	void Update () {
 
-        
+        // Set the task 
         if (task != "" && cond != "" && !bll.taskStatus()) {
             if (task == "bumpers") {
 
@@ -48,15 +48,21 @@ public class VariableContainer : MonoBehaviour {
                 trig.disable();
             }
 
+     
+
 
 
 
 
         }
+        // if task is active in ball, update task
         if (bll.taskStatus()) {
+
+            // check task type
+
             if (task =="bumpers") {
                 currentScore = bll.getScore();
-
+                // Check task condition, if met reset task data
                 if (currentScore >= targetScore ) {
                     task = "";
                     cond = "";
@@ -72,6 +78,8 @@ public class VariableContainer : MonoBehaviour {
 
 
             }
+
+
 
 
         }
