@@ -976,7 +976,6 @@ GameObject:
   - component: {fileID: 1074591055}
   - component: {fileID: 1074591054}
   - component: {fileID: 1074591053}
-  - component: {fileID: 1074591058}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -1065,17 +1064,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1074591058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1074591052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1910309bfa55fa4bbd0db1bbda2dfe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1140685131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1707,6 +1695,7 @@ GameObject:
   - component: {fileID: 1830701312}
   - component: {fileID: 1830701311}
   - component: {fileID: 1830701310}
+  - component: {fileID: 1830701313}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -1781,6 +1770,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1830701308}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1830701313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1830701308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052139a4bd644cb4bb471e24e95cb762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2022705039
 GameObject:
   m_ObjectHideFlags: 0
