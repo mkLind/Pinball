@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class VariableContainer : MonoBehaviour {
     public StoryTrigger trig;
+    public GameObject[] triggers;
     public BallBehaviour bll;
    
     public string task = "";
@@ -17,7 +18,12 @@ public class VariableContainer : MonoBehaviour {
 
 	void Start () {
         trig = GameObject.Find("StoryElement").GetComponent<StoryTrigger>();
+        triggers = GameObject.FindGameObjectsWithTag("storypad");
+
+
         bll = GameObject.Find("Ball").GetComponent<BallBehaviour>();
+
+
         tasktext.text = "Task: Hit a story panel."; // Set initial task text
        
      
@@ -45,8 +51,14 @@ public class VariableContainer : MonoBehaviour {
                 taskActive = true;
                 bll.setTaskActive();
 
+                for (int i = 0; i<triggers.Length;i++) {
+                    triggers[i].GetComponent<StoryTrigger>().disable();
+
+                }
+
+
                 
-                trig.disable();
+                //trig.disable();
             }
 
      
@@ -72,9 +84,13 @@ public class VariableContainer : MonoBehaviour {
                     bll.disableTask();
                     currentScore = 0;
                     targetScore = 0;
+                    for (int i = 0; i < triggers.Length; i++)
+                    {
+                        triggers[i].GetComponent<StoryTrigger>().setEnabled();
 
+                    }
 
-                    trig.setEnabled();
+                    //trig.setEnabled();
                    
                 }
 
