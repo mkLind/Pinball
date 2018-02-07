@@ -16,12 +16,16 @@ public class TrapBehaviour : MonoBehaviour {
 		coll.gameObject.GetComponent<Rigidbody> ().isKinematic = false;
 		//Adding force to Z-axis only (transform.forward)
 		coll.gameObject.GetComponent<Rigidbody>().AddForce (transform.forward * force);
+		//enable the trap again, small wait so the ball wont get stuck to the trap before leaving
+		yield return new WaitForSeconds (0.1f);
+		callOnce = false;
 	}
 
 	//When the ball collides with the trap this method is called
 	void OnCollisionEnter (Collision col)
 	{	
-		//Cheking if the colliding object is the ball and if the collision has already been called once
+		/*Cheking if the colliding object is the ball and if the collision has already been called once
+		in order to not start another coroutine while in the trap*/
 		if(col.gameObject.name == "Ball" && !callOnce)
 		{
 			coll = col;

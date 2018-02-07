@@ -14,6 +14,10 @@ public class BumperBehaviour : MonoBehaviour {
 			//Force to a forward direction (Z-axis of the trigger) is added 
 			//to the collision component that has a rigidbody (the ball)
 			col.GetComponent<Rigidbody>().AddForce (transform.forward * force);
+
+			//Incrementing score that's in the ball script
+			BallBehaviour bb = col.gameObject.GetComponent<BallBehaviour>();
+			bb.score = bb.score + 50;
 		}
 	}
 }

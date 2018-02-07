@@ -9,11 +9,21 @@ public class StoryTrigger : MonoBehaviour {
   
     public Rect windowR = new Rect(100,50,2000,1000);
     public bool triggered;
-    public string followingPromptId = "s1";
+    public bool active;
+    public static string followingPromptId = "s1";
+    public string option1id;
+    public string option2id;
+    public VariableContainer cont;
     public string followingPrompt;
     XmlNodeList list;
     public string Text;
     public List<string> options;
+    public List<string> optionId;
+    public List<string> task;
+    public List<string> condition;
+
+    public string currentTask;
+    public string currentCondition;
     
 
 
@@ -22,7 +32,14 @@ public class StoryTrigger : MonoBehaviour {
         // Position the window and set the story element to un triggered state
         windowR = new Rect((Screen.width/2)-200, 50, 400, 100);
         triggered = false;
+        active = true;
         followingPromptId = "s1";
+        option1id = "s1";
+        option2id = "s1";
+     
+        currentTask = "";
+        currentCondition = "";
+        cont = GetComponent<VariableContainer>();
 
 
         string loadFrom = Application.dataPath + @"/Resources/Story.XML"; // ÅAth for loading the STORY xml
@@ -34,26 +51,60 @@ public class StoryTrigger : MonoBehaviour {
         // COntainers for changing options ant text
         Text = "";
         options = new List<string>();
-        
+        optionId = new List<string>();
+
+        task = new List<string>();
+        condition = new List<string>();
     }
-	
-// Event handling. Add buttons, their shapes and what they do
+
+    public string getCurrentTask() {
+        return currentTask;
+
+    }
+
+    public string getCurrentCondition()
+    {
+        return currentCondition;
+
+    }
+
+    // Event handling. Add buttons, their shapes and what they do
     void DoMyWindow(int windowID) {
         
 
         if (GUI.Button(new Rect(150, 30, 100, 20), options[0])) {
+
             Time.timeScale = 1; // Enable rendering
-            triggered = false; // Set to untriggered statew
+            triggered = false; // Set to untriggered state
             // Clear text and options 
             Text = "";
             options = new List<string>();
 
+            followingPromptId = optionId[0];
+            currentTask = task[0];
+            currentCondition = condition[0];
+
+            optionId = new List<string>();
+            task = new List<string>();
+            condition = new List<string>();
+
+            cont.setTaskAndCond(currentTask, currentCondition);
+
         } else if (GUI.Button(new Rect(150, 60, 100, 20), options[1])) {
+
             Time.timeScale = 1;
             triggered = false;
 
+            followingPromptId = optionId[1];
+            currentTask = task[1];
+            currentCondition = condition[1];
+
             Text = "";
             options = new List<string>();
+            optionId = new List<string>();
+            task = new List<string>();
+            condition = new List<string>();
+            cont.setTaskAndCond(currentTask, currentCondition);
         }
 
     }
@@ -72,7 +123,7 @@ public class StoryTrigger : MonoBehaviour {
     // Set the element to triggered state and freeze the scene
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Ball"))
+        if (other.gameObject.CompareTag("Ball") && active)
         {
             FetchText(followingPromptId);
             triggered = true;
@@ -84,10 +135,22 @@ public class StoryTrigger : MonoBehaviour {
 
         
     }
+    public void setEnabled() {
+        
 
+        active = true;
+    }
+    public void disable() {
+        active = false;
+    }
+    public bool isEnabled() {
+        return active;
+    }
+    public string getFollowingId() {
+        return followingPromptId;
+    }
 
-
-     void FetchText(string id) {
+    void FetchText(string id) {
 
         XmlNodeList promptData;
         // Find the promt with right Id
@@ -109,14 +172,21 @@ public class StoryTrigger : MonoBehaviour {
                     }
                     // Fetch button options
                     if (text.Name == "option") {
-                        options.Add(text.InnerText);
+                        options.Add(text.Attributes["text"].Value);
+                        XmlNode next;
+                        next = text.FirstChild; // next data
+                        optionId.Add(next.InnerText);
+                        
+
+                        task.Add(next.Attributes["task"].Value);
+                        condition.Add(next.Attributes["cond"].Value);
+
+                       
+               
+
 
                     }
-                    // Fetch the next story element Id.
-                    if (text.Name == "next") {
-                        followingPromptId = text.InnerText;
-                        break;
-                    }
+               
 
 
 
