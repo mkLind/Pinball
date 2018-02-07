@@ -14,6 +14,7 @@ public class StoryTrigger : MonoBehaviour {
     public string option1id;
     public string option2id;
     public VariableContainer cont;
+    public BallBehaviour behav;
     public string followingPrompt;
     XmlNodeList list;
     public string Text;
@@ -21,25 +22,27 @@ public class StoryTrigger : MonoBehaviour {
     public List<string> optionId;
     public List<string> task;
     public List<string> condition;
+    public int fontSize;
 
     public string currentTask;
     public string currentCondition;
-    
+    public Texture paper;
 
 
 	// Use this for initialization
 	void Start () {
         // Position the window and set the story element to un triggered state
-        windowR = new Rect((Screen.width/2)-200, 50, 400, 100);
+        windowR = new Rect(0,0, Screen.width, 1000);
         triggered = false;
         active = true;
         followingPromptId = "s1";
         option1id = "s1";
         option2id = "s1";
-     
+        fontSize = 30;
         currentTask = "";
         currentCondition = "";
-        cont = GetComponent<VariableContainer>();
+        cont = GameObject.Find("Table").GetComponent<VariableContainer>();
+        behav = GameObject.Find("Ball").GetComponent<BallBehaviour>();
 
 
         string loadFrom = Application.dataPath + @"/Resources/Story.XML"; // ÅAth for loading the STORY xml
@@ -70,27 +73,27 @@ public class StoryTrigger : MonoBehaviour {
 
     // Event handling. Add buttons, their shapes and what they do
     void DoMyWindow(int windowID) {
-        
-
-        if (GUI.Button(new Rect(150, 30, 100, 20), options[0])) {
+        GUI.Label(new Rect((Screen.width / 2) - 250, 50, 500, 300), Text); // DISplay the title as a label
+        // Specify button. First dimensions and then text
+        if (GUI.Button(new Rect((Screen.width/2) - 250, 175, 500, 50), options[0])) {
 
             Time.timeScale = 1; // Enable rendering
             triggered = false; // Set to untriggered state
             // Clear text and options 
             Text = "";
             options = new List<string>();
-
+            // Set prompt id for following promt in addition to current task and current condition
             followingPromptId = optionId[0];
             currentTask = task[0];
             currentCondition = condition[0];
-
+            // reset for next prompt fetch
             optionId = new List<string>();
             task = new List<string>();
             condition = new List<string>();
+            // callback for sending the current task and condition to ValueContainer
+            cont.SetTaskAndCond(currentTask, currentCondition);
 
-            cont.setTaskAndCond(currentTask, currentCondition);
-
-        } else if (GUI.Button(new Rect(150, 60, 100, 20), options[1])) {
+        } else if (GUI.Button(new Rect((Screen.width / 2) - 250, 300, 500, 50), options[1])) {
 
             Time.timeScale = 1;
             triggered = false;
@@ -104,7 +107,7 @@ public class StoryTrigger : MonoBehaviour {
             optionId = new List<string>();
             task = new List<string>();
             condition = new List<string>();
-            cont.setTaskAndCond(currentTask, currentCondition);
+            cont.SetTaskAndCond(currentTask, currentCondition);
         }
 
     }
@@ -116,14 +119,21 @@ public class StoryTrigger : MonoBehaviour {
     {
         if (triggered) {
             
-            windowR = GUI.Window(0, windowR, DoMyWindow, Text);
+            windowR = GUI.Window(0, windowR, DoMyWindow, paper);
+            // Set font color and size
+            GUI.color = Color.black;
+            GUI.skin.label.fontSize = fontSize;
+            GUI.skin.button.fontSize = fontSize;
+            GUI.skin.window.fontSize = fontSize;
+            
+           
         }
 
     }
     // Set the element to triggered state and freeze the scene
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Ball") && active)
+        if (other.gameObject.CompareTag("Ball") && !behav.taskStatus())
         {
             FetchText(followingPromptId);
             triggered = true;
@@ -136,11 +146,13 @@ public class StoryTrigger : MonoBehaviour {
         
     }
     public void setEnabled() {
-        
 
         active = true;
     }
     public void disable() {
+     
+       
+        
         active = false;
     }
     public bool isEnabled() {
