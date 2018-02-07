@@ -3784,10 +3784,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bll: {fileID: 0}
-  openLimit: 0
+  openLimit: 500
   door: {fileID: 0}
   change: 0.5
   scaling: 0
+  closed: 0
+  open: 0
   scaleFactor: 0
 --- !u!1 &1778911561
 GameObject:
