@@ -42,6 +42,7 @@ public class VariableContainer : MonoBehaviour {
 
         // Set the task 
         if (task != "" && cond != "" && !bll.taskStatus()) {
+            // checking the task type.
             if (task == "bumpers") {
                 
                 bumpCond = int.Parse(cond);
@@ -51,14 +52,19 @@ public class VariableContainer : MonoBehaviour {
                 taskActive = true;
                 bll.setTaskActive();
 
+
+                // Disable story triggers
+
                 for (int i = 0; i<triggers.Length;i++) {
+                    Debug.Log("Disabled triggers: " + i);
                     triggers[i].GetComponent<StoryTrigger>().disable();
+                    triggers[i].GetComponent<Renderer>().material.color = Color.black;
 
                 }
 
 
                 
-                //trig.disable();
+                
             }
 
      
@@ -84,13 +90,14 @@ public class VariableContainer : MonoBehaviour {
                     bll.disableTask();
                     currentScore = 0;
                     targetScore = 0;
+                    // enable story triggers
                     for (int i = 0; i < triggers.Length; i++)
                     {
                         triggers[i].GetComponent<StoryTrigger>().setEnabled();
-
+                        triggers[i].GetComponent<Renderer>().material.color = Color.white;
                     }
 
-                    //trig.setEnabled();
+                   
                    
                 }
 

@@ -7,7 +7,7 @@ public class DoorBehavior : MonoBehaviour {
     public int openLimit;
     public Rigidbody door;
     public float change;
-    public bool scaling;
+    public bool changing;
     public bool closed;
     public bool open;
     public float scaleFactor;
@@ -17,7 +17,7 @@ public class DoorBehavior : MonoBehaviour {
         bll = GameObject.Find("Ball").GetComponent<BallBehaviour>();
         door = GetComponent<Rigidbody>();
 
-        scaling = false;
+        changing = false;
         closed = true;
         open = false;
 
@@ -25,8 +25,9 @@ public class DoorBehavior : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        // If score is above limit and door state is closed then  set status to changing to open the door.
         if (bll.getScore() >= openLimit && closed) {
-            scaling = true;
+            changing = true;
 
 
 
@@ -39,15 +40,19 @@ public class DoorBehavior : MonoBehaviour {
 
     }
 
-    void openDoor() {
-        if (scaling) {
 
-            door.transform.position += new Vector3(0, -0.1f, 0);
+
+
+    void openDoor() {
+        if (changing) {
+            // change position
+            door.transform.position += new Vector3(0, -0.01f, 0);
 
 
         }
+        // if long enough moved, then stop and set state to opened
         if (door.position.y <= -0.5f) {
-            scaling = false;
+            changing = false;
             open = true;
             closed = false;
         }
@@ -55,16 +60,16 @@ public class DoorBehavior : MonoBehaviour {
     }
 
     void closeDoor() {
-        if (scaling)
+        if (changing)
         {
 
-            door.transform.position += new Vector3(0, 0.1f, 0);
+            door.transform.position += new Vector3(0, 0.01f, 0);
 
 
         }
         if (door.position.y >= 0.7f)
         {
-            scaling = false;
+            changing = false;
             open = false;
             closed = true;
         }

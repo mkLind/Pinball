@@ -2,7 +2,7 @@
 <prompts>
 
 <prompt id = "s1">
-<text>"There is a door in front of you. What do you do"</text>
+<text>"There is a door in front of you. What do you do?"</text>
 <option text ="Break it">
   <next task="bumpers" cond ="500">s2</next>
 </option>
@@ -22,7 +22,7 @@
   </prompt>
 
   <prompt id = "s3">
-    <text>"You are in a great hall. There is a door and a set of stairs"+"\n"+" at the end of the hall. What do you do? "</text>
+    <text>"You are in a great hall. There is a door and a set of stairs at the end of the hall. What do you do? "</text>
     <option text =" Take the stairs">
       <next task="bumpers" cond ="500">s4</next>
     </option>
@@ -62,7 +62,7 @@
   </prompt>
 
   <prompt id = "s4.1">
-    <text>"The orc was slain. You go through a door that is at the other end of the room." +"\n"+ " On the other side you see a dragon keeping a princess prisoner."</text>
+    <text>"The orc was slain. You go through a door that is at the other end of the room. On the other side you see a dragon keeping a princess prisoner."</text>
     <option text ="Try to approach the princess">
       <next task="bumpers" cond ="500">s8</next>
     </option>
@@ -72,7 +72,7 @@
   </prompt>
   
   <prompt id = "s4.2">
-    <text>" The orc wounded you badly. You managed to flee through a door at the end of the room." +"\n"+"On the other side you see a dragon keeping a princess prisoner.""</text>
+    <text>" The orc wounded you badly. You managed to flee through a door at the end of the room. On the other side you see a dragon keeping a princess prisoner.""</text>
     <option text ="Try to talk to the dragon">
       <next task="bumpers" cond ="500">s8</next>
     </option>
@@ -84,7 +84,7 @@
 
 
   <prompt id = "s7">
-    <text>"At the end of the corridor you see ladder."+"\n"+" You climb up the ladder and on the second floor you see a dragon keeping a princess prisoner. "</text>
+    <text>"At the end of the corridor you see ladder. You climb up the ladder and on the second floor you see a dragon keeping a princess prisoner. "</text>
     <option text ="Try to talk to the dragon">
       <next task="bumpers" cond ="500">s8</next>
     </option>

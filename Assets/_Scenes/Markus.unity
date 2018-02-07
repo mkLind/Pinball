@@ -956,16 +956,16 @@ RectTransform:
   m_GameObject: {fileID: 249248428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5138705, y: 1.142443, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2060497307}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -58.9, y: 218.8}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 295.99036, y: -40.0634}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &249248430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,14 +987,14 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 1
+    m_FontSize: 16
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
-    m_RichText: 0
+    m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
@@ -2066,6 +2066,11 @@ Prefab:
       propertyPath: m_Name
       value: StoryElement
       objectReference: {fileID: 0}
+    - target: {fileID: 114759282937804604, guid: 5bd87701939861b40bdd1719eceb2cf4,
+        type: 2}
+      propertyPath: paper
+      value: 
+      objectReference: {fileID: 2800000, guid: fe7d60f7ad665a543b151caf78879055, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bd87701939861b40bdd1719eceb2cf4, type: 2}
   m_IsPrefabParent: 0
@@ -2112,6 +2117,11 @@ Prefab:
       propertyPath: m_Name
       value: StoryElement
       objectReference: {fileID: 0}
+    - target: {fileID: 114759282937804604, guid: 5bd87701939861b40bdd1719eceb2cf4,
+        type: 2}
+      propertyPath: paper
+      value: 
+      objectReference: {fileID: 2800000, guid: fe7d60f7ad665a543b151caf78879055, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bd87701939861b40bdd1719eceb2cf4, type: 2}
   m_IsPrefabParent: 0
@@ -2962,6 +2972,11 @@ Prefab:
       propertyPath: m_Name
       value: 'StoryElement '
       objectReference: {fileID: 0}
+    - target: {fileID: 114759282937804604, guid: 5bd87701939861b40bdd1719eceb2cf4,
+        type: 2}
+      propertyPath: paper
+      value: 
+      objectReference: {fileID: 2800000, guid: fe7d60f7ad665a543b151caf78879055, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bd87701939861b40bdd1719eceb2cf4, type: 2}
   m_IsPrefabParent: 0
@@ -3752,7 +3767,7 @@ Transform:
   m_GameObject: {fileID: 1769548535}
   m_LocalRotation: {x: -0, y: 0.3226078, z: -0, w: 0.9465328}
   m_LocalPosition: {x: -5.52, y: 0.38, z: 2.23}
-  m_LocalScale: {x: 1.6154202, y: 0.6993261, z: 0.0840809}
+  m_LocalScale: {x: 1.9750774, y: 0.6993261, z: 0.0840809}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 27
