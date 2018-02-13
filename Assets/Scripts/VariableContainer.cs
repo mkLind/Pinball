@@ -9,6 +9,9 @@ public class VariableContainer : MonoBehaviour {
     public GameObject[] triggers;
     public BallBehaviour bll;
     public TriggerGroupBehaviour abcTriggerGroup;
+    public TargetGroupBehavior targets;
+    public GateBehavior gate;
+
     public char[] abcTriggers;
    
     public string task = "";
@@ -18,11 +21,14 @@ public class VariableContainer : MonoBehaviour {
     public int currentScore;
     public bool taskActive;
     public Text tasktext;
+    public int passCond;
 
 	void Start () {
         trig = GameObject.Find("StoryElement").GetComponent<StoryTrigger>();
         triggers = GameObject.FindGameObjectsWithTag("storypad");
         abcTriggerGroup = GameObject.Find("ABCTriggerGroup").GetComponent<TriggerGroupBehaviour>();
+        gate = GameObject.Find("Gateway").GetComponent<GateBehavior>();
+        targets = GameObject.Find("Targets").GetComponent<TargetGroupBehavior>();
         // these are used to refer the index of each trigger
         abcTriggers = new char[] { 'A', 'B', 'C' };
 
@@ -47,9 +53,9 @@ public class VariableContainer : MonoBehaviour {
         if (task != "" && cond != "" && !bll.taskStatus()) {
             // checking the task type.
             if (task == "bumpers") {
-                
+
                 bumpCond = int.Parse(cond);
-                tasktext.text = "Task: Raise your score with " + cond + " points." ; // set the task text to indicate score challenge
+                tasktext.text = "Task: Raise your score with " + cond + " points."; // set the task text to indicate score challenge
                 currentScore = bll.getScore();
                 targetScore = currentScore + bumpCond;
                 taskActive = true;
@@ -68,6 +74,22 @@ public class VariableContainer : MonoBehaviour {
                 abcTriggerGroup.SetTaskActive(goal);
                 taskActive = true;
                 bll.setTaskActive();
+            } else if (task == "targets") {
+                targets.initTask();
+                tasktext.text = "Task: Hit all the wooden targets";
+                taskActive = true;
+                bll.setTaskActive();
+
+
+
+            }
+            else if (task == "gate") {
+                passCond = int.Parse(cond);
+                taskActive = true;
+                bll.setTaskActive();
+                tasktext.text = "Pass through the gate " + cond +" Times. Times passed: " + gate.getTimesPassed();
+
+
             }
 
             // Disable story triggers
@@ -84,10 +106,10 @@ public class VariableContainer : MonoBehaviour {
 
             // check task type
 
-            if (task =="bumpers") {
+            if (task == "bumpers") {
                 currentScore = bll.getScore();
                 // Check task condition, if met reset task data
-                if (currentScore >= targetScore ) {
+                if (currentScore >= targetScore) {
                     disableTask();
                 }
             }
@@ -102,6 +124,26 @@ public class VariableContainer : MonoBehaviour {
                 {
                     disableTask();
                 }
+            }
+            else if (task == "targets") {
+                if (targets.isTaskFinished()) {
+                    disableTask();
+
+                }
+
+            }
+            else if (task == "gate") {
+                if (gate.getTimesPassed() >= passCond)
+                {
+                    disableTask();
+
+
+                }
+                else {
+                    tasktext.text = "Pass through the gate " + cond + " Times. Times passed: " + gate.getTimesPassed();
+
+                }
+
             }
         }
 	}

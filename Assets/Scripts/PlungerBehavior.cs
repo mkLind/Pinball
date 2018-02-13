@@ -12,8 +12,8 @@ public class PlungerBehavior : MonoBehaviour {
     public bool forceApplied = false;
     public string inputName;
     //public Vector3 curPos;
-    Vector3 restPos;
-    Vector3 curPos;
+    public Vector3 restPos;
+    public Vector3 curPos;
     Rigidbody plunger;
     Rigidbody plungerBase;
    
@@ -33,8 +33,8 @@ public class PlungerBehavior : MonoBehaviour {
         plunger.constraints = RigidbodyConstraints.FreezePositionY;
         // PLungers rest position
         restPos = plunger.position;
-      
-        
+        currentPos = plunger.position.z;
+        forceApplied = false;
 
 
 
@@ -50,6 +50,7 @@ public class PlungerBehavior : MonoBehaviour {
             {
                 // free Z and move the plunger while reducing position and adding energy to plunger
                 //=> plunger moves downwards because of this
+                
                 plunger.constraints = origConstr;
                 plunger.MovePosition(transform.position - transform.forward * Time.deltaTime);
                 currentPos = plunger.position.z;
