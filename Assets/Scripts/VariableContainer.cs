@@ -11,6 +11,7 @@ public class VariableContainer : MonoBehaviour {
     public TriggerGroupBehaviour abcTriggerGroup;
     public TargetGroupBehavior targets;
     public GateBehavior gate;
+    public TrapBehaviour trap;
 
     public char[] abcTriggers;
    
@@ -29,6 +30,8 @@ public class VariableContainer : MonoBehaviour {
         abcTriggerGroup = GameObject.Find("ABCTriggerGroup").GetComponent<TriggerGroupBehaviour>();
         gate = GameObject.Find("Gateway").GetComponent<GateBehavior>();
         targets = GameObject.Find("Targets").GetComponent<TargetGroupBehavior>();
+        trap = GameObject.Find("TrapWall").GetComponent<TrapBehaviour>();
+
         // these are used to refer the index of each trigger
         abcTriggers = new char[] { 'A', 'B', 'C' };
 
@@ -87,8 +90,15 @@ public class VariableContainer : MonoBehaviour {
                 passCond = int.Parse(cond);
                 taskActive = true;
                 bll.setTaskActive();
-                tasktext.text = "Pass through the gate " + cond +" Times. Times passed: " + gate.getTimesPassed();
+                tasktext.text = "Pass through the gate " + cond + " Times. Times passed: " + gate.getTimesPassed();
 
+
+            }
+            else if (task == "trap") {
+
+                taskActive = true;
+                bll.setTaskActive();
+                tasktext.text = "Plunge into the trap!";
 
             }
 
@@ -143,6 +153,14 @@ public class VariableContainer : MonoBehaviour {
                     tasktext.text = "Pass through the gate " + cond + " Times. Times passed: " + gate.getTimesPassed();
 
                 }
+
+            } else if (task == "trap") {
+                if (trap.isCaptured()) {
+
+                    disableTask();
+
+                }
+
 
             }
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrapBehaviour : MonoBehaviour {
 
 	public float force = 60.0f;
+    public bool captured = false;
 
 	private Collision coll;
 	private bool callOnce = new bool ();
@@ -19,6 +20,7 @@ public class TrapBehaviour : MonoBehaviour {
 		//enable the trap again, small wait so the ball wont get stuck to the trap before leaving
 		yield return new WaitForSeconds (0.1f);
 		callOnce = false;
+        captured = false;
 	}
 
 	//When the ball collides with the trap this method is called
@@ -29,9 +31,13 @@ public class TrapBehaviour : MonoBehaviour {
 		if(col.gameObject.name == "Ball" && !callOnce)
 		{
 			coll = col;
-			//Starting the coroutine
+            //Starting the coroutine
+            captured = true;
 			StartCoroutine(Wait());
 			callOnce = true;
 		}
 	}
+    public bool isCaptured() {
+        return captured;
+    }
 }
