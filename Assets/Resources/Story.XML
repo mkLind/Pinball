@@ -14,7 +14,7 @@
   <prompt id = "s2.1">
     <text>"Nearby troll woke up from you breaking the door. What do you do?"</text>
     <option text =" Fight it!">
-      <next task="targets" cond ="hitAll">s3</next>
+      <next task="trap" cond ="hit">s3</next>
     </option>
     <option text ="Run">
       <next task="gate" cond ="2">s3</next>
@@ -54,7 +54,7 @@
       <next task="bumpers" cond ="500">s6</next>
     </option>
     <option text ="Carefully sneak through the corridor">
-      <next task="bumpers" cond ="500">s7</next>
+      <next task="gate" cond ="3">s7</next>
     </option>
   </prompt>
 
