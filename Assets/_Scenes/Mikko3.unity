@@ -2049,13 +2049,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962e249a0e15d47449628043ffa203bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD:Assets/_Scenes/Mikko3.unity
   trapActive: 0
   force: 100
   captured: 0
-=======
-  force: 100
->>>>>>> 85189e2ea26a4d6674059ecc9cd1cb55938e3db7:Assets/_Scenes/Mikko3.unity
 --- !u!23 &441839847
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3112,10 +3108,7 @@ MonoBehaviour:
   gate: {fileID: 0}
   nextRoom: {fileID: 0}
   nextRoomDoor: {fileID: 0}
-<<<<<<< HEAD:Assets/_Scenes/Mikko3.unity
   trap: {fileID: 0}
-=======
->>>>>>> 85189e2ea26a4d6674059ecc9cd1cb55938e3db7:Assets/_Scenes/Mikko3.unity
   abcTriggers: 
   task: 
   cond: 
@@ -4115,11 +4108,7 @@ MonoBehaviour:
   currentPos: -3
   maxPos: -7
   plungerEnergy: 0
-<<<<<<< HEAD:Assets/_Scenes/Mikko3.unity
   plungerEnergyAddition: 0.15
-=======
-  plungerEnergyAddition: 30
->>>>>>> 85189e2ea26a4d6674059ecc9cd1cb55938e3db7:Assets/_Scenes/Mikko3.unity
   forceApplied: 0
   inputName: Plunger
   restPos: {x: 0, y: 0, z: 0}

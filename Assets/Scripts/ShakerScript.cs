@@ -6,7 +6,7 @@ public class ShakerScript : MonoBehaviour {
 	public BallBehaviour bll;
 	public Rigidbody ballBody;
 	public TrapBehaviour trap;
-	public PlungerBehavior plung;
+	public PlungerBase plung;
 	public bool shakeActive;
 
 	float speed = 30.0f; //how fast it shakes
@@ -17,6 +17,7 @@ public class ShakerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		plung = GameObject.Find ("plungerBase").GetComponent<PlungerBase> ();
 		trap = GameObject.Find("TrapWall").GetComponent<TrapBehaviour> ();
 		ballBody = GameObject.Find("Ball").GetComponent<Rigidbody> ();
 
@@ -27,7 +28,7 @@ public class ShakerScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (trap.trapStatus () == false && Input.acceleration.magnitude > 1.3f) {
+		if (trap.trapStatus () == false && plung.getPressedState() == false && Input.acceleration.magnitude > 1.3f) {
 				shakeActive = true;
 				//0.82f and 4f are offsets to center the shake
 				transform.position = new Vector3 (Mathf.Sin (Time.time * speed) * amount - 0.82f, transform.position.y,	Mathf.Sin (Time.time * speed) * 0.01f + 4f);

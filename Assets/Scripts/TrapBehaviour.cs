@@ -33,13 +33,7 @@ public class TrapBehaviour : MonoBehaviour {
 		{
 			coll = col;
             //Starting the coroutine
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 85189e2ea26a4d6674059ecc9cd1cb55938e3db7
-=======
->>>>>>> 85189e2ea26a4d6674059ecc9cd1cb55938e3db7
             captured = true;
 			StartCoroutine(Wait());
 			trapActive = true;
@@ -47,9 +41,6 @@ public class TrapBehaviour : MonoBehaviour {
 			captured = true;
 		}
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 
 	public bool trapStatus(){
 		return trapActive;
@@ -58,15 +49,5 @@ public class TrapBehaviour : MonoBehaviour {
     public bool isCaptured() {
         return captured;
     }
-		
-=======
-    public bool isCaptured() {
-        return captured;
-    }
->>>>>>> 85189e2ea26a4d6674059ecc9cd1cb55938e3db7
-=======
-    public bool isCaptured() {
-        return captured;
-    }
->>>>>>> 85189e2ea26a4d6674059ecc9cd1cb55938e3db7
+
 }
