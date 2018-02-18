@@ -26,6 +26,7 @@
     <option text ="Click to continue">
       <next task="enterNextRoom" cond ="Enter the Castle">s3</next>
     </option>
+   
   </prompt>
 
   <prompt id = "s3">
