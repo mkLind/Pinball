@@ -162,6 +162,13 @@ public class StoryTrigger : MonoBehaviour {
         return followingPromptId;
     }
 
+    public void ActivateNextTask()
+    {
+        FetchText(followingPromptId);
+        triggered = true;
+        Time.timeScale = 0; // scene freezes 
+    }
+
     void FetchText(string id) {
 
         XmlNodeList promptData;

@@ -14,9 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Markus.unity
     guid: d2251df3896cc054c9d41f4830646291
-  - enabled: 1
-    path: Assets/_Scenes/Mikko.unity
-    guid: 01f97b4b86f30af40ab697866e7e03e3
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/_Scenes/Teppo.unity
     guid: 341ee2f483af18745867c1b06a73a287

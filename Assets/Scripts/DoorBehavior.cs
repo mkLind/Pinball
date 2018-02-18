@@ -10,7 +10,7 @@ public class DoorBehavior : MonoBehaviour {
     public bool changing;
     public bool closed;
     public bool open;
-    public float scaleFactor;
+
 
     // Use this for initialization
     void Start() {

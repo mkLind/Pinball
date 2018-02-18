@@ -29,7 +29,7 @@ public class BallBehaviour : MonoBehaviour {
 		threshold = -5f;
         taskActive = false;
 		//Initial starting position
-		startPosition = new Vector3 (4.2f, 0.25f, 0.3f);
+	
 	}
 		
 	void Update () {

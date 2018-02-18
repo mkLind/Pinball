@@ -2,32 +2,40 @@
 <prompts>
 
   <prompt id = "s1">
-  <text>"There is a door in front of you. What do you do?"</text>
-  <option text ="Break it">
-    <next task="bumpers" cond ="500">s2</next>
-  </option>
-  <option text ="Pick the lock">
-    <next task="ABCtriggers" cond ="CBA">s3</next>
-  </option>
+    <text>"You find a castle with a huge wooden door in front of you. What do you do?"</text>
+    <option text ="Break it">
+      <next task="targets" cond ="hitAll">s2.1</next>
+    </option>
+    <option text ="Pick the lock">
+      <next task="openDoor" cond ="B">s2.2</next>
+    </option>
   </prompt>
   
-  <prompt id = "s2">
-    <text>"You encountered a troll. What do you do?"</text>
+  <prompt id = "s2.1">
+    <text>"Nearby troll woke up from you breaking the door. What do you do?"</text>
     <option text =" Fight it!">
-      <next task="bumpers" cond ="500">s3</next>
+      <next task="trap" cond ="hit">s3</next>
     </option>
     <option text ="Run">
-      <next task="bumpers" cond ="500">s3</next>
+      <next task="gate" cond ="2">s3</next>
     </option>
+  </prompt>
+
+  <prompt id = "s2.2">
+    <text>"You successfully pick the lock. Through the doorway the hallway looks empty."</text>
+    <option text ="Click to continue">
+      <next task="enterNextRoom" cond ="Enter the Castle">s3</next>
+    </option>
+   
   </prompt>
 
   <prompt id = "s3">
     <text>"You are in a great hall. There is a door and a set of stairs at the end of the hall. What do you do? "</text>
-    <option text =" Take the stairs">
-      <next task="bumpers" cond ="500">s4</next>
+    <option text ="Take the stairs">
+      <next task="targets" cond ="hitAll">s4</next>
     </option>
     <option text ="Go through the door">
-      <next task="bumpers" cond ="500">s5</next>
+      <next task="gate" cond ="1">s5</next>
     </option>
   </prompt>
 
@@ -37,7 +45,7 @@
       <next task="bumpers" cond ="500">s4.1</next>
     </option>
     <option text ="Dodge and flee">
-      <next task="bumpers" cond ="500">s4.2</next>
+      <next task="ABCtriggers" cond ="BAC">s4.2</next>
     </option>
   </prompt>
 
@@ -47,7 +55,7 @@
       <next task="bumpers" cond ="500">s6</next>
     </option>
     <option text ="Carefully sneak through the corridor">
-      <next task="bumpers" cond ="500">s7</next>
+      <next task="gate" cond ="3">s7</next>
     </option>
   </prompt>
 

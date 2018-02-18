@@ -52,7 +52,7 @@ public class TriggerGroupBehaviour : MonoBehaviour {
         // if ABC trigger task is active, need to use different rules
         if (taskActive)
         {
-            if (objectIndex == currentGoalIndex)
+            if (objectIndex == goal[currentGoalIndex])
             {
                 material.color = Color.cyan;
                 states[objectIndex] = true;
@@ -99,6 +99,7 @@ public class TriggerGroupBehaviour : MonoBehaviour {
         ResetTriggers();
         taskActive = true;
         taskCompleted = false;
+        currentGoalIndex = 0;
     }
 
     public bool isTaskCompleted()
