@@ -8,6 +8,7 @@ public class FlipperBehavior : MonoBehaviour {
     public float pressedPosition = 45f;
     public float hitStrength = 1000000f;
     public float flipDamper = 150f;
+   
     // Name for the pressed key
     public string inputName;
     // Joint of the flipper
@@ -19,6 +20,10 @@ public class FlipperBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // Retreive the hinge joint attached to flipper paddle
+      
+
+    
+
 
         hinge = GetComponent<HingeJoint>();
         // Set it using a spring

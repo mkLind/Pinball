@@ -25,6 +25,9 @@ public class PlungerBehavior : MonoBehaviour {
 	Rigidbody plunger;
 	Rigidbody plungerBase;
 
+
+    
+
 	PlungerBase plungB;
 	RigidbodyConstraints origConstr;
 	// Rigidbody of plunger: is kinematic and use gravity true
@@ -34,6 +37,8 @@ public class PlungerBehavior : MonoBehaviour {
 		pressed = false;
 
 		plungB = GameObject.Find ("plungerBase").GetComponent<PlungerBase> ();
+     
+
 		plunger = GetComponent<Rigidbody>();
 		plunger.freezeRotation = true;
 
@@ -50,14 +55,15 @@ public class PlungerBehavior : MonoBehaviour {
 		restPos = plunger.position;
 		currentPos = plunger.position.z;
 		forceApplied = false;
+       
 
 
 
 
 	}
-
-	// Update is called once per frame
-	void Update () {
+  
+    // Update is called once per frame
+    void FixedUpdate () {
 		//Keyboard input. Checked key explicitly so touch events do not register.
 		if (Input.GetKey ("s")) {
 			// if s is pressed
@@ -94,6 +100,7 @@ public class PlungerBehavior : MonoBehaviour {
 
 						plunger.AddForce (transform.forward * plungerEnergy * damper);
 
+                  
 						forceApplied = true;
 					}
 					// if plunger going up
