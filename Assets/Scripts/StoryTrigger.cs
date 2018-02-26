@@ -111,11 +111,10 @@ public class StoryTrigger : MonoBehaviour {
         }
 
     }
-
-
+  
 
     // When the Story element gets triggered, Show the UI Window
-   void OnGUI()
+    void OnGUI()
     {
         if (triggered) {
             

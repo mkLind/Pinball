@@ -151,7 +151,7 @@ public class VariableContainer : MonoBehaviour {
             {
                 Debug.Log("Disabled triggers: " + i);
                 triggers[i].GetComponent<StoryTrigger>().disable();
-                triggers[i].GetComponent<Renderer>().material.color = Color.black;
+              
 
             }
         }
@@ -257,7 +257,7 @@ public class VariableContainer : MonoBehaviour {
         for (int i = 0; i < triggers.Length; i++)
         {
             triggers[i].GetComponent<StoryTrigger>().setEnabled();
-            triggers[i].GetComponent<Renderer>().material.color = Color.white;
+    
         }
     }
 }
