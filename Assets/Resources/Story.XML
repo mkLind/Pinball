@@ -61,12 +61,10 @@
 
   <prompt id = "s6">
     <text>"Yout carelessness set off a trap. You died."</text>
-    <option text ="Start over">
-      <next task="bumpers" cond ="500">s1</next>
+    <option text ="Main menu">
+      <next task="main" cond ="">s1</next>
     </option>
-    <option text ="Exit the game">
-      <next task="bumpers" cond ="500">s2</next>
-    </option>
+    
   </prompt>
 
   <prompt id = "s4.1">
@@ -85,7 +83,7 @@
       <next task="bumpers" cond ="500">s8</next>
     </option>
     <option text ="Try to attack the dragon">
-      <next task="bumpers" cond ="500">s9</next>
+      <next task="trap" cond ="hit">s9</next>
     </option>
   </prompt>
 
@@ -145,11 +143,8 @@
 
   <prompt id = "s11">
     <text>"The assailant got you! You died."</text>
-    <option text ="Start over">
-      <next task="bumpers" cond ="500">s1</next>
-    </option>
-    <option text ="Exit game">
-      <next task="bumpers" cond ="500">s2</next>
+    <option text ="Main menu">
+      <next task="main" cond ="">s1</next>
     </option>
   </prompt>
 
