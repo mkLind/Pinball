@@ -12,7 +12,7 @@ public class BoosterBehaviour : MonoBehaviour {
     {
         if (col.gameObject.name == "Ball")
         {
-
+            print("touched");
             //print("boosted");
             var normalizedVelocity = col.gameObject.GetComponent<Rigidbody>().velocity.normalized;
             normalizedVelocity.y = 0;
