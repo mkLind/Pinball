@@ -24,6 +24,9 @@ public class TowerBehaviour : MonoBehaviour {
         trapActive = false;
         callOnce = false;
         captured = false;
+
+        CastleBehaviour cb = GameObject.Find("TowerRoom").GetComponent<CastleBehaviour>();
+        cb.CloseDoors();
     }
 
     //When the ball collides with the trap this method is called
@@ -44,13 +47,4 @@ public class TowerBehaviour : MonoBehaviour {
         }
     }
 
-    public bool trapStatus()
-    {
-        return trapActive;
-    }
-
-    public bool isCaptured()
-    {
-        return captured;
-    }
 }

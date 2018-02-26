@@ -14,6 +14,7 @@ public class VariableContainer : MonoBehaviour {
     public NextRoomBehaviour nextRoom;
     public NextRoomDoorBehaviour nextRoomDoor;
     public TrapBehaviour trap;
+    public CastleBehaviour castleBehaviour;
 
     public char[] abcTriggers;
    
@@ -43,6 +44,7 @@ public class VariableContainer : MonoBehaviour {
         nextRoom = GameObject.Find("NextRoom").GetComponent<NextRoomBehaviour>();
         nextRoomDoor = GameObject.Find("NextRoomDoor").GetComponent<NextRoomDoorBehaviour>();
 
+        //castleBehaviour = GameObject.Find("Castle").GetComponent<CastleBehaviour>();
 
         bll = GameObject.Find("Ball").GetComponent<BallBehaviour>();
 
@@ -95,7 +97,6 @@ public class VariableContainer : MonoBehaviour {
 
 
 
-
             } else if (task == "targets") {
                 targets.initTask();
                 tasktext.text = "Task: Hit all the wooden targets";
@@ -141,7 +142,8 @@ public class VariableContainer : MonoBehaviour {
                 taskActive = true;
                 bll.setTaskActive();
 
-
+                print("commanding to pne doors");
+                //castleBehaviour.OpenDoors();
 
 
             }
@@ -258,6 +260,23 @@ public class VariableContainer : MonoBehaviour {
         {
             triggers[i].GetComponent<StoryTrigger>().setEnabled();
     
+        }
+    }
+
+    // Can be used to determine when the ball falls of the board
+    // !!!! requires for the ball's have locked physics for the Y-axis, otherwise the player will lose if the ball jumps a bit
+    void OnTriggerExit(Collider col)
+    {
+        if (col.GetComponent<Rigidbody>() != null)
+        {
+            //Force to a forward direction (Z-axis of the trigger) is added 
+            //to the collision component that has a rigidbody (the ball)
+            //col.GetComponent<Rigidbody>().AddForce(transform.forward * force);
+
+            print("exited trigger");
+            //Incrementing score that's in the ball script
+            BallBehaviour2 bb = col.gameObject.GetComponent<BallBehaviour2>();
+            bb.ResetBall();
         }
     }
 }
