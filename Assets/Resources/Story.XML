@@ -2,7 +2,7 @@
 <prompts>
 
   <prompt id = "s1">
-    <text>"You find a castle with a huge wooden door in front of you. What do you do?"</text>
+    <text>"You find a castle with a huge wooden door in front of you. "</text>
     <option text ="Break it">
       <next task="targets" cond ="hitAll">s2.1</next>
     </option>
@@ -12,7 +12,7 @@
   </prompt>
   
   <prompt id = "s2.1">
-    <text>"Nearby troll woke up from you breaking the door. What do you do?"</text>
+    <text>"Nearby troll woke up from you breaking the door. "</text>
     <option text =" Fight it!">
       <next task="trap" cond ="hit">s3</next>
     </option>
@@ -40,7 +40,7 @@
   </prompt>
 
   <prompt id = "s4">
-    <text>" You encountered an Orc that immediately attacks. How do you react? "</text>
+    <text>" You encountered an Orc that immediately attacks. "</text>
     <option text ="Dodge and fight back">
       <next task="bumpers" cond ="500">s4.1</next>
     </option>
@@ -50,7 +50,7 @@
   </prompt>
 
   <prompt id = "s5">
-    <text>"Behind the door there is a suspicious corridor. How do you proceed? "</text>
+    <text>"Behind the door there is a suspicious corridor.  "</text>
     <option text ="Run through the corridor">
       <next task="bumpers" cond ="500">s6</next>
     </option>
@@ -111,7 +111,7 @@
   
 
   <prompt id = "s8">
-    <text>"The dragon attacks. Where do you strike?"</text>
+    <text>"The dragon attacks."</text>
     <option text ="Aim for its heart.">
       <next task="bumpers" cond ="500"> s10.1</next>
     </option>
