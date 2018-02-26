@@ -66,6 +66,12 @@ public class VariableContainer : MonoBehaviour {
         // Set the task 
         if (task != "" && cond != "" && !bll.taskStatus()) {
             // checking the task type.
+            if (task=="main") {
+                GameObject.Find("Canvas").GetComponent<PauseMenu>().endScreenUI.SetActive(true);
+
+
+
+            }
             if (task == "bumpers") {
 
                 bumpCond = int.Parse(cond);
