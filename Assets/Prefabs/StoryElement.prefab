@@ -113,8 +113,10 @@ MonoBehaviour:
   optionId: []
   task: []
   condition: []
+  fontSize: 0
   currentTask: 
   currentCondition: 
+  paper: {fileID: 0}
 --- !u!136 &136293368736932824
 CapsuleCollider:
   m_ObjectHideFlags: 1

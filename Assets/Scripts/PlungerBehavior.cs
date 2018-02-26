@@ -15,6 +15,7 @@ public class PlungerBehavior : MonoBehaviour {
 
 	public float plungerEnergy = 0f;
 	public float plungerEnergyAddition = 0f;
+    public float plungerLoadSpeed = 0f;
 	public float damper;
 	public bool forceApplied = false;
 	public bool maxReached;
@@ -77,7 +78,7 @@ public class PlungerBehavior : MonoBehaviour {
 					//=> plunger moves downwards because of this
 
 					plunger.constraints = origConstr;
-					plunger.MovePosition (transform.position - transform.forward * Time.deltaTime);
+					plunger.MovePosition (transform.position - transform.forward * Time.deltaTime * plungerLoadSpeed);
 					currentPos = plunger.position.z;
 					plungerEnergy = plungerEnergy + plungerEnergyAddition;
 					curPos = plunger.position; // Store current position

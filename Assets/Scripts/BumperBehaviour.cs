@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class BumperBehaviour : MonoBehaviour {
 
-	public float force = 50.0f;
+	public float force = 300.0f;
+    private BallBehaviour bb;
 
-	//When the ball enters the trigger this method is called
-	void OnTriggerEnter(Collider col)
+    private void Start()
+    {
+        bb = GameObject.Find("Ball").GetComponent<BallBehaviour>();
+    }
+
+    //When the ball enters the trigger this method is called
+    void OnCollisionEnter(Collision col)
 	{
-		if (col.GetComponent<Rigidbody>() != null) 
+		if (col.collider.GetComponent<Rigidbody>() != null) 
 		{
 			//Force to a forward direction (Z-axis of the trigger) is added 
 			//to the collision component that has a rigidbody (the ball)
-			col.GetComponent<Rigidbody>().AddForce (new Vector3(0,0,force));
+			col.gameObject.GetComponent<Rigidbody>().AddForce (new Vector3(force,0,0));
 
 			//Incrementing score that's in the ball script
-			BallBehaviour bb = col.gameObject.GetComponent<BallBehaviour>();
 			bb.score = bb.score + 50;
 		}
 	}
