@@ -111,7 +111,7 @@
   
 
   <prompt id = "s8">
-    <text>"The dragon attacks."</text>
+    <text>"The dragon attacks"</text>
     <option text ="Aim for its heart.">
       <next task="bumpers" cond ="500"> s10.1</next>
     </option>
