@@ -31,7 +31,7 @@ public class PlungerBehavior : MonoBehaviour {
     public int load;
     public int idle;
     public int back;
-
+    public bool ballInTouch;
 
 
 
@@ -49,7 +49,7 @@ public class PlungerBehavior : MonoBehaviour {
         load = Animator.StringToHash("Load");
         idle = Animator.StringToHash("Idle");
         back = Animator.StringToHash("Back");
-
+        ballInTouch = false;
 
 
 
@@ -130,7 +130,12 @@ public class PlungerBehavior : MonoBehaviour {
             if (pressed) { 
                 if (!forceApplied) {
 
-						//plunger.AddForce (transform.forward * plungerEnergy * damper);
+                    //plunger.AddForce (transform.forward * plungerEnergy * damper);
+                    if (ballInTouch) {
+                        GameObject.Find("Ball").GetComponent<Rigidbody>().AddForce(transform.forward * plungerEnergy * damper);
+                        ballInTouch = false;
+                    }
+
                         anim.ResetTrigger(load);
                         anim.SetTrigger(shoot);
                          
@@ -181,7 +186,14 @@ public class PlungerBehavior : MonoBehaviour {
         
 	}
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Ball")) {
+            ballInTouch = true;
+        }
+    }
 
 
-   
+
+
 }

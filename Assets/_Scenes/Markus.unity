@@ -3235,12 +3235,12 @@ MonoBehaviour:
   maxPos: -7
   pressed: 0
   min: 0
-  max: -50
+  max: -100
   current: -1
   plungerEnergy: 0
-  plungerEnergyAddition: 0.25
+  plungerEnergyAddition: 3
   plungerLoadSpeed: 0
-  damper: 0.25
+  damper: 1
   forceApplied: 0
   maxReached: 0
   inputName: Plunger
@@ -3252,6 +3252,7 @@ MonoBehaviour:
   load: 0
   idle: 0
   back: 0
+  ballInTouch: 0
 --- !u!95 &441221967 stripped
 Animator:
   m_PrefabParentObject: {fileID: 9500000, guid: 7f0c4144f1d359644b884d4bcf69e6e2,
@@ -3264,7 +3265,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 441221965}
   serializedVersion: 2
-  m_Mass: 900000
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
@@ -3272,6 +3273,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!64 &441221970
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 441221965}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 0}
+--- !u!65 &441221971
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 441221965}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 4.961532, z: 13.575157}
+  m_Center: {x: 0.0000024999592, y: 1.980762, z: -6.2876}
 --- !u!1 &441839844
 GameObject:
   m_ObjectHideFlags: 0
@@ -9407,13 +9434,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1796718944}
-  m_LocalRotation: {x: 0.024489945, y: -0.96739084, z: 0.24924393, w: 0.037852492}
-  m_LocalPosition: {x: 8.71, y: 1.34, z: -3.41}
+  m_LocalRotation: {x: -0.327177, y: -0.00864859, z: 0.015973495, w: -0.9447885}
+  m_LocalPosition: {x: 1.39, y: 8.4, z: -17.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 28.953001, y: -176.001, z: -1.8670001}
+  m_LocalEulerAnglesHint: {x: 38.207, y: -359.571, z: -1.7880001}
 --- !u!1001 &1814710882
 Prefab:
   m_ObjectHideFlags: 0
