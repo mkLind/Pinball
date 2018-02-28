@@ -55,7 +55,7 @@ public class VariableContainer : MonoBehaviour {
         print("bll " + bll);
         print("abc  " + abcTriggerGroup);
 
-        tasktext.text = "Task: Hit a story panel."; // Set initial task text
+        tasktext.text = "Task: "; // Set initial task text
        
      
  

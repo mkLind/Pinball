@@ -4388,7 +4388,7 @@ MonoBehaviour:
   forceApplied: 0
   maxReached: 0
   inputName: Plunger
-  anim: {fileID: 0}
+  anim: {fileID: 9500000, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
   restPos: {x: 0, y: 0, z: 0}
   curPos: {x: 0, y: 0, z: 0}
   shoot: 0
@@ -4396,6 +4396,7 @@ MonoBehaviour:
   load: 0
   idle: 0
   back: 0
+  ballInTouch: 0
 --- !u!54 &527154524
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15963,6 +15964,7 @@ MonoBehaviour:
   load: 0
   idle: 0
   back: 0
+  ballInTouch: 0
 --- !u!54 &1960886961
 Rigidbody:
   m_ObjectHideFlags: 0
