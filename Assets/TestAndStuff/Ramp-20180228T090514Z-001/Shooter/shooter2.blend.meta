@@ -77,7 +77,7 @@ ModelImporter:
       name: Shoot
       takeName: Default Take
       firstFrame: 20
-      lastFrame: 40
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
