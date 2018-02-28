@@ -51,7 +51,7 @@ public class DoorBehavior : MonoBehaviour {
 
         }
         // if long enough moved, then stop and set state to opened
-        if (door.position.y <= -0.5f) {
+        if (door.position.y <= -0.95f) {
             changing = false;
             open = true;
             closed = false;

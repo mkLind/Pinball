@@ -82,7 +82,7 @@ public class TargetBehavior : MonoBehaviour {
 
         }
         // if long enough moved, then stop and set state to raised
-        if (target.position.y <= origpos.y + 20f)
+        if (target.position.y <= origpos.y + 90f)
         {
             goingUP = false;
             raised = true;
