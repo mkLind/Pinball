@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 public class StoryTrigger : MonoBehaviour {
   
-    public Rect windowR = new Rect(100,50,2000,1000);
+    public Rect windowR;
     public bool triggered;
     public bool active;
     public static string followingPromptId = "s1";
@@ -33,7 +33,7 @@ public class StoryTrigger : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // Position the window and set the story element to un triggered state
-        windowR = new Rect(0,0, Screen.width, 1000);
+		windowR = new Rect(0,0, Screen.width, Screen.height);
         triggered = false;
         active = true;
         followingPromptId = "s1";
@@ -74,10 +74,15 @@ public class StoryTrigger : MonoBehaviour {
 
     // Event handling. Add buttons, their shapes and what they do
     void DoMyWindow(int windowID) {
-		GUI.color = Color.black;
-        GUI.Label(new Rect((Screen.width / 2) - 175, 100, 400, 300), Text); // DISplay the title as a label
+		
+		GUI.skin.button.normal.textColor = Color.black;
+		GUI.skin.button.hover.textColor = Color.black;
+		GUI.skin.button.active.textColor = Color.black;
+		GUI.skin.label.normal.textColor = Color.black;
+
+		GUI.Label(new Rect((Screen.width / 2) - 175, 100, 400, 300), Text); // DISplay the title as a label
         // Specify button. First dimensions and then text
-        if (GUI.Button(new Rect((Screen.width/2) - 225, 330, 450, 50), options[0])) {
+		if (GUI.Button(new Rect((Screen.width/2) - 225, 330, 450, 50), options[0])) {
 
             Time.timeScale = 1; // Enable rendering
             triggered = false; // Set to untriggered state
@@ -95,7 +100,7 @@ public class StoryTrigger : MonoBehaviour {
             // callback for sending the current task and condition to ValueContainer
             cont.SetTaskAndCond(currentTask, currentCondition);
 
-        } else if (GUI.Button(new Rect((Screen.width / 2) - 225, 400, 450, 50), options[1])) {
+		} else if (GUI.Button(new Rect((Screen.width / 2) - 225, 400, 450, 50), options[1])) {
 
             Time.timeScale = 1;
             triggered = false;
@@ -117,12 +122,12 @@ public class StoryTrigger : MonoBehaviour {
 
     // When the Story element gets triggered, Show the UI Window
     void OnGUI()
-    {
+	{
         if (triggered) {
-            
+			
             windowR = GUI.Window(0, windowR, DoMyWindow, paper);
             // Set font color and size
-            GUI.color = Color.black;
+            //GUI.color = Color.black;
             GUI.skin.label.fontSize = fontSize;
             GUI.skin.button.fontSize = fontSize;
             GUI.skin.window.fontSize = fontSize;
@@ -131,6 +136,7 @@ public class StoryTrigger : MonoBehaviour {
         }
 
     }
+
     // Set the element to triggered state and freeze the scene
     void OnTriggerStay(Collider other)
     {
