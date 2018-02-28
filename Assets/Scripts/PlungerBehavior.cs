@@ -29,24 +29,19 @@ public class PlungerBehavior : MonoBehaviour {
 
 
 
-    int loadHash = Animator.StringToHash("Load");
-    int shootHash = Animator.StringToHash("Shoot");
-    int backHash = Animator.StringToHash("Back");
-    int idleHash = Animator.StringToHash("Idle");
-    int maxHash = Animator.StringToHash("Max");
 
 
 
 
-    
 
-	PlungerBase plungB;
+    PlungerBase plungB;
 	RigidbodyConstraints origConstr;
 	// Rigidbody of plunger: is kinematic and use gravity true
 
 	// Use this for initialization
 	void Start () {
-		pressed = false;
+
+        pressed = false;
         anim = GetComponent<Animator>();
         maxReached = false;
 
@@ -87,7 +82,7 @@ public class PlungerBehavior : MonoBehaviour {
 				pressed = true;
 				// If current position of the plunger is greater than the max position
 				if (current > max) {
-                    changeAnimation(inf,pressed,forceApplied,maxReached);
+                   
 
 
                     // free Z and move the plunger while reducing position and adding energy to plunger
@@ -109,7 +104,7 @@ public class PlungerBehavior : MonoBehaviour {
 					plunger.position = curPos;
                     maxReached = true;
 
-                    changeAnimation(inf, pressed, forceApplied, maxReached);
+                   
                 }
 			} else {
 				if (pressed) {
@@ -124,7 +119,7 @@ public class PlungerBehavior : MonoBehaviour {
                     }
 					// if plunger going up
 					if (current < min && forceApplied) {
-                        changeAnimation(inf, pressed, forceApplied, maxReached);
+                       
 
 
                         // release Z, move and add to position while reducing energy
@@ -177,7 +172,7 @@ public class PlungerBehavior : MonoBehaviour {
 
 
 				} else {
-                    anim.SetTrigger(backHash);
+                    
                     // Freeze y and z and set position to current position
                     plunger.constraints = RigidbodyConstraints.FreezePositionZ;
 					plunger.constraints = RigidbodyConstraints.FreezePositionY;
@@ -196,7 +191,7 @@ public class PlungerBehavior : MonoBehaviour {
 					}
 					// if plunger going up
 					if (current < min && forceApplied) {
-                        anim.SetTrigger(shootHash);
+                      
 
 
                         // release Z, move and add to position while reducing energy
@@ -223,7 +218,7 @@ public class PlungerBehavior : MonoBehaviour {
 						currentPos = plunger.position.z;
 						forceApplied = false;
 						pressed = false;
-                        anim.SetTrigger(backHash);
+                      
 
                     }
 				}
@@ -274,30 +269,5 @@ public class PlungerBehavior : MonoBehaviour {
 
 
 
-    public void changeAnimation(AnimatorStateInfo inf, bool pressed, bool forceApplied, bool maxReached) {
-
-        if (inf.nameHash == idleHash && pressed)
-        {
-            anim.SetTrigger(loadHash);
-        }
-        else {
-            anim.SetTrigger(idleHash);
-        }
-        if (maxReached && inf.nameHash == loadHash)
-        {
-            anim.SetTrigger(maxHash);
-        }
-        else {
-            anim.SetTrigger(loadHash);
-        }
-        if (!pressed && inf.nameHash == maxHash)
-        {
-            anim.SetTrigger(shootHash);
-
-        }
-        else {
-            anim.SetTrigger(maxHash);
-        }
-
-    }
+   
 }
