@@ -46,5 +46,12 @@ public class TowerBehaviour : MonoBehaviour {
             captured = true;
         }
     }
+	public bool trapStatus(){
+		return trapActive;
+	}
+
+	public bool isCaptured() {
+		return captured;
+	}
 
 }

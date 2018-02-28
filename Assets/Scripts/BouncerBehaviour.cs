@@ -15,7 +15,7 @@ public class BouncerBehaviour : MonoBehaviour {
 			//Force to a random direction in the X-axis is added to the 
 			//collision component that has a rigidbody (the ball)
 			directionZ = Random.Range(-1f, 1f);
-			col.gameObject.GetComponent<Rigidbody>().AddForce (new Vector3 (directionZ, 0, 0) * force);
+			col.gameObject.GetComponent<Rigidbody>().AddForce (new Vector3 (0, 0, directionZ) * force);
 			//Incrementing score that's in the ball script
 			BallBehaviour bb = col.gameObject.GetComponent<BallBehaviour>();
 			bb.score = bb.score + 100;
