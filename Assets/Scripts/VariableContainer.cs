@@ -118,7 +118,7 @@ public class VariableContainer : MonoBehaviour {
 
                 taskActive = true;
                 bll.setTaskActive();
-                tasktext.text = "Plunge into the trap!";
+                tasktext.text = "Plunge into the tower!";
 
             }
             else if (task == "enterNextRoom")
@@ -225,7 +225,7 @@ public class VariableContainer : MonoBehaviour {
 
             }
             // this task will get next task automatically when completed
-            else if (task == "openDoor")
+            else if (task == "openDoor2")
             {
                 // get the current progress
                 var progress = cond.Substring(0, abcTriggerGroup.GetTaskProgress());

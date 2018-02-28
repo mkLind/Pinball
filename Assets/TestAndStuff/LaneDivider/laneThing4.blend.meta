@@ -15,6 +15,7 @@ ModelImporter:
     400006: Ruuvi_001
     2100000: unnamed
     2100002: Metal
+    2100004: None__lineDividerUV
     2300000: Cube
     2300002: Ruuvi
     2300004: Ruuvi_001
@@ -32,6 +33,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Metal
     second: {fileID: 2100000, guid: ffedb693ce74e7247926ced4d29af4f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None__lineDividerUV
+    second: {fileID: 2100000, guid: 54f0697facbe8b441a235631d7357dae, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

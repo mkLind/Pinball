@@ -74,7 +74,7 @@ public class PlungerBehavior : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate () {
         //Keyboard input. Checked key explicitly so touch events do not register.
-        AnimatorStateInfo inf = anim.GetCurrentAnimatorStateInfo(0); 
+        //AnimatorStateInfo inf = anim.GetCurrentAnimatorStateInfo(0); 
         
 		if (Input.GetKey ("s")) {
 			// if s is pressed
@@ -82,7 +82,7 @@ public class PlungerBehavior : MonoBehaviour {
 				pressed = true;
 				// If current position of the plunger is greater than the max position
 				if (current > max) {
-                   
+
 
 
                     // free Z and move the plunger while reducing position and adding energy to plunger
@@ -104,7 +104,7 @@ public class PlungerBehavior : MonoBehaviour {
 					plunger.position = curPos;
                     maxReached = true;
 
-                   
+
                 }
 			} else {
 				if (pressed) {
@@ -119,7 +119,7 @@ public class PlungerBehavior : MonoBehaviour {
                     }
 					// if plunger going up
 					if (current < min && forceApplied) {
-                       
+
 
 
                         // release Z, move and add to position while reducing energy

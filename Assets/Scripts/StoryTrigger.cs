@@ -28,6 +28,7 @@ public class StoryTrigger : MonoBehaviour {
     public string currentCondition;
     public Texture paper;
 
+	public Font myFont;
 
 	// Use this for initialization
 	void Start () {
@@ -73,9 +74,10 @@ public class StoryTrigger : MonoBehaviour {
 
     // Event handling. Add buttons, their shapes and what they do
     void DoMyWindow(int windowID) {
-        GUI.Label(new Rect((Screen.width / 2) - 250, 50, 500, 300), Text); // DISplay the title as a label
+		GUI.color = Color.black;
+        GUI.Label(new Rect((Screen.width / 2) - 175, 100, 400, 300), Text); // DISplay the title as a label
         // Specify button. First dimensions and then text
-        if (GUI.Button(new Rect((Screen.width/2) - 250, 175, 500, 50), options[0])) {
+        if (GUI.Button(new Rect((Screen.width/2) - 225, 330, 450, 50), options[0])) {
 
             Time.timeScale = 1; // Enable rendering
             triggered = false; // Set to untriggered state
@@ -93,7 +95,7 @@ public class StoryTrigger : MonoBehaviour {
             // callback for sending the current task and condition to ValueContainer
             cont.SetTaskAndCond(currentTask, currentCondition);
 
-        } else if (GUI.Button(new Rect((Screen.width / 2) - 250, 300, 500, 50), options[1])) {
+        } else if (GUI.Button(new Rect((Screen.width / 2) - 225, 400, 450, 50), options[1])) {
 
             Time.timeScale = 1;
             triggered = false;
@@ -124,13 +126,13 @@ public class StoryTrigger : MonoBehaviour {
             GUI.skin.label.fontSize = fontSize;
             GUI.skin.button.fontSize = fontSize;
             GUI.skin.window.fontSize = fontSize;
-            
+			GUI.skin.font = myFont;
            
         }
 
     }
     // Set the element to triggered state and freeze the scene
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Ball") && !behav.taskStatus())
         {

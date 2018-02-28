@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShakerScript : MonoBehaviour {
 	public BallBehaviour bll;
 	public Rigidbody ballBody;
-	public TrapBehaviour trap;
+	public TowerBehaviour trap;
 	public PlungerBase plung;
 	public bool shakeActive;
 
@@ -18,7 +18,7 @@ public class ShakerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		plung = GameObject.Find ("plungerBase").GetComponent<PlungerBase> ();
-		trap = GameObject.Find("TrapWall").GetComponent<TrapBehaviour> ();
+		trap = GameObject.Find("TrapWall").GetComponent<TowerBehaviour> ();
 		ballBody = GameObject.Find("Ball").GetComponent<Rigidbody> ();
 
 		Input.gyro.enabled = true; 
@@ -30,8 +30,7 @@ public class ShakerScript : MonoBehaviour {
 	void Update () {
 		if (trap.trapStatus () == false && plung.getPressedState() == false && Input.acceleration.magnitude > 1.3f) {
 				shakeActive = true;
-				//0.82f and 4f are offsets to center the shake
-				transform.position = new Vector3 (Mathf.Sin (Time.time * speed) * amount - 0.82f, transform.position.y,	Mathf.Sin (Time.time * speed) * 0.01f + 4f);
+				transform.position = new Vector3 (Mathf.Sin (Time.time * speed) * amount, transform.position.y,	Mathf.Sin (Time.time * speed) * 0.01f);
 
 				//add force to ball
 				float directionZ = Random.Range(-1f, 1f);
