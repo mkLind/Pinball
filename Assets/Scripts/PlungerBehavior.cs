@@ -26,7 +26,11 @@ public class PlungerBehavior : MonoBehaviour {
 	public Vector3 curPos;
 	Rigidbody plunger;
 	Rigidbody plungerBase;
-
+    public int shoot;
+    public int Max;
+    public int load;
+    public int idle;
+    public int back;
 
 
 
@@ -40,6 +44,14 @@ public class PlungerBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        shoot = Animator.StringToHash("Shoot");
+        Max = Animator.StringToHash("Max");
+        load = Animator.StringToHash("Load");
+        idle = Animator.StringToHash("Idle");
+        back = Animator.StringToHash("Back");
+
+
+
 
         pressed = false;
         anim = GetComponent<Animator>();
@@ -80,6 +92,9 @@ public class PlungerBehavior : MonoBehaviour {
 			// if s is pressed
 			if (Input.GetAxis (inputName) == 1) {
 				pressed = true;
+                if (pressed) {
+                    anim.SetTrigger(load);
+                }
 				// If current position of the plunger is greater than the max position
 				if (current > max) {
 
@@ -107,6 +122,9 @@ public class PlungerBehavior : MonoBehaviour {
 
                 }
 			} else {
+                if (pressed && !maxReached) {
+                    anim.SetTrigger(idle);
+                }
 				if (pressed) {
 					// Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
 					if (!forceApplied) {
