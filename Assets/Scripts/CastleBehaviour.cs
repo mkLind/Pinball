@@ -18,8 +18,11 @@ public class CastleBehaviour : MonoBehaviour {
 
     private bool open = false;
 
+    private AudioSource audioSource;
+
 	// Use this for initialization
 	void Start () {
+        audioSource = GetComponent<AudioSource>();
         leftDoor = GameObject.Find("leftCastleDoor").GetComponent<HingeJoint>();
         rightDoor = GameObject.Find("rightCastleDoor").GetComponent<HingeJoint>();
         // Set it using a spring
@@ -58,10 +61,12 @@ public class CastleBehaviour : MonoBehaviour {
     public void OpenDoors()
     {
         open = true;
+        audioSource.Play();
     }
 
     public void CloseDoors()
     {
         open = false;
+        audioSource.Play();
     }
 }

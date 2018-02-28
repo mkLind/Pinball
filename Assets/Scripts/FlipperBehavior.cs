@@ -17,12 +17,17 @@ public class FlipperBehavior : MonoBehaviour {
 
 	PlungerBase plung;
 
+    private bool inputOnActivated;
+    private bool inputOffActivated;
+    private AudioSource audioSource;
+
 	// Use this for initialization
 	void Start () {
         // Retreive the hinge joint attached to flipper paddle
-      
 
-    
+        audioSource = GetComponent<AudioSource>();
+        inputOnActivated = false;
+        inputOffActivated = false;
 
 
         hinge = GetComponent<HingeJoint>();
@@ -45,7 +50,21 @@ public class FlipperBehavior : MonoBehaviour {
 			// If a key is pressed, move the paddle to pressed position, otherwise move the paddle to rest position
 			if (Input.GetAxis (inputName) == 1) {
 				spring.targetPosition = pressedPosition;
-			} else {
+                if (!audioSource.isPlaying && !inputOnActivated)
+                {
+                    audioSource.pitch = 2;
+                    audioSource.Play();
+                }
+
+                if (!inputOnActivated)
+                    inputOnActivated = true;
+            } else {
+                if (inputOnActivated)
+                {
+                    audioSource.pitch = 1;
+                    audioSource.Play();
+                }
+                inputOnActivated = false;
 				spring.targetPosition = restPosition;
 			}
 		}
@@ -64,6 +83,12 @@ public class FlipperBehavior : MonoBehaviour {
 				}
 			}
 		} else {
+            if (inputOnActivated)
+            {
+                audioSource.pitch = 2;
+                audioSource.Play();
+            }
+            inputOnActivated = false;
 			spring.targetPosition = restPosition;
 		}
 		// Set the newly defined spring for the hinge and set it using limits.

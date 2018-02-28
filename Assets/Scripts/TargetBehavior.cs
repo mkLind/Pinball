@@ -77,12 +77,12 @@ public class TargetBehavior : MonoBehaviour {
         if (goingUP)
         {
             // change position
-            target.transform.position += new Vector3(0, 0.25f, 0);
+            target.transform.position += new Vector3(0, 0.75f, 0);
 
 
         }
         // if long enough moved, then stop and set state to raised
-        if (target.position.y <= origpos.y + 90f)
+        if (target.position.y <= origpos.y + 200f)
         {
             goingUP = false;
             raised = true;
