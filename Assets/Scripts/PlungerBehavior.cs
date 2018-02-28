@@ -87,8 +87,7 @@ public class PlungerBehavior : MonoBehaviour {
     void FixedUpdate () {
         //Keyboard input. Checked key explicitly so touch events do not register.
         //AnimatorStateInfo inf = anim.GetCurrentAnimatorStateInfo(0); 
-        
-		if (Input.GetKey ("s")) {
+       
 			// if s is pressed
 			if (Input.GetAxis (inputName) == 1) {
 				pressed = true;
@@ -105,7 +104,7 @@ public class PlungerBehavior : MonoBehaviour {
                     //=> plunger moves downwards because of this
 
                     plunger.constraints = origConstr;
-					plunger.MovePosition (transform.position - transform.forward * Time.deltaTime * plungerLoadSpeed);
+					//plunger.MovePosition (transform.position - transform.forward * Time.deltaTime * plungerLoadSpeed);
 					currentPos = plunger.position.z;
 					plungerEnergy = plungerEnergy + plungerEnergyAddition;
 					curPos = plunger.position; // Store current position
@@ -126,14 +125,14 @@ public class PlungerBehavior : MonoBehaviour {
                     
                 }
 			} else {
-                pressed = false;
-				
-					// Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
-					if (!forceApplied) {
 
-						plunger.AddForce (transform.forward * plungerEnergy * damper);
-                    anim.ResetTrigger(load);
-                    anim.SetTrigger(shoot);
+            // Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
+            if (pressed) { 
+                if (!forceApplied) {
+
+						//plunger.AddForce (transform.forward * plungerEnergy * damper);
+                        anim.ResetTrigger(load);
+                        anim.SetTrigger(shoot);
                          
 
                        forceApplied = true;
@@ -142,21 +141,21 @@ public class PlungerBehavior : MonoBehaviour {
                   
 
                     // if plunger going up
-                    if (current < min && forceApplied) {
+                    if (plungerEnergy>0 && forceApplied) {
 
 
 
                         // release Z, move and add to position while reducing energy
                         plunger.constraints = origConstr;
 
-						plunger.MovePosition (transform.position + new Vector3 (0, 0, plungerEnergy * damper) * Time.deltaTime);
+						//plunger.MovePosition (transform.position + new Vector3 (0, 0, plungerEnergy * damper) * Time.deltaTime);
 
 						currentPos = plunger.position.z;
 						// Change current indicator and plunger energy only if plunger energy is higher than zero.
-						if (plungerEnergy > 0) {
+						
 							plungerEnergy -= plungerEnergyAddition;
 							current += 1 * (int)plungerEnergy;
-						}
+						
 
 					} else {
                        
@@ -169,126 +168,15 @@ public class PlungerBehavior : MonoBehaviour {
 						current = min - 1;
 						currentPos = plunger.position.z;
 						forceApplied = false;
-						
+                        pressed = false;
+                        anim.ResetTrigger(shoot);
                         anim.SetTrigger(back);
-                    }
+                         anim.SetTrigger(idle);
+                }
 				
 			}
 		} 
-		//Touch input
-		else if (plungB.getPressedState () == true) {	//Attach PlungerBase script to plungerBase gameobject!
-			//When plunger base is pressed
-			if (Input.touchCount > 0) {
-				pressed = true;
-				// If current position of the plunger is greater than the max position
-				if (current > max) {
-                    
-
-                    // free Z and move the plunger while reducing position and adding energy to plunger
-                    //=> plunger moves downwards because of this
-
-                    plunger.constraints = origConstr;
-					plunger.MovePosition (transform.position - transform.forward * Time.deltaTime);
-					currentPos = plunger.position.z;
-					plungerEnergy = plungerEnergy + plungerEnergyAddition;
-					curPos = plunger.position; // Store current position
-					current -= 1; // Integer value marking the position of the plunger
-
-
-				} else {
-                    
-                    // Freeze y and z and set position to current position
-                    plunger.constraints = RigidbodyConstraints.FreezePositionZ;
-					plunger.constraints = RigidbodyConstraints.FreezePositionY;
-					plunger.position = curPos;
-
-
-				}
-			} else {
-				if (pressed) {
-					// Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
-					if (!forceApplied) {
-
-						plunger.AddForce (transform.forward * plungerEnergy * damper);
-
-						forceApplied = true;
-					}
-					// if plunger going up
-					if (current < min && forceApplied) {
-                      
-
-
-                        // release Z, move and add to position while reducing energy
-                        plunger.constraints = origConstr;
-
-						plunger.MovePosition (transform.position + new Vector3 (0, 0, plungerEnergy * damper) * Time.deltaTime);
-
-						currentPos = plunger.position.z;
-						// Change current indicator and plunger energy only if plunger energy is higher than zero.
-						if (plungerEnergy > 0) {
-							plungerEnergy -= plungerEnergyAddition;
-							current += 1 * (int)plungerEnergy;
-						}
-
-					} else {
-
-						// freeze y and z set position to rest and energy to 0.
-						plunger.constraints = RigidbodyConstraints.FreezePositionZ;
-						plunger.constraints = RigidbodyConstraints.FreezePositionY;
-						plungerEnergy = 0f;
-						plunger.position = restPos;
-						curPos = restPos;
-						current = min - 1;
-						currentPos = plunger.position.z;
-						forceApplied = false;
-						pressed = false;
-                      
-
-                    }
-				}
-			}
-		}else {
-			if (pressed) {
-				// Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
-				if (!forceApplied) {
-
-					plunger.AddForce (transform.forward * plungerEnergy * damper);
-
-					forceApplied = true;
-				}
-				// if plunger going up
-				if (current < min && forceApplied) {
-
-
-
-					// release Z, move and add to position while reducing energy
-					plunger.constraints = origConstr;
-
-					plunger.MovePosition (transform.position + new Vector3 (0, 0, plungerEnergy * damper) * Time.deltaTime);
-
-					currentPos = plunger.position.z;
-					// Change current indicator and plunger energy only if plunger energy is higher than zero.
-					if (plungerEnergy > 0) {
-						plungerEnergy -= plungerEnergyAddition;
-						current += 1 * (int)plungerEnergy;
-					}
-
-				} else {
-
-					// freeze y and z set position to rest and energy to 0.
-					plunger.constraints = RigidbodyConstraints.FreezePositionZ;
-					plunger.constraints = RigidbodyConstraints.FreezePositionY;
-					plungerEnergy = 0f;
-					plunger.position = restPos;
-					curPos = restPos;
-					current = min - 1;
-					currentPos = plunger.position.z;
-					forceApplied = false;
-					pressed = false;
-
-				}
-			}
-		}
+		
 
         
 	}
