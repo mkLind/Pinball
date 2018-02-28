@@ -16,7 +16,9 @@ public class BallBehaviour2 : MonoBehaviour {
 	public Vector3 startPosition;
     public bool taskActive;
 
-	void Start () {
+    private AudioSource audioSource;
+
+    void Start () {
 		score = 0;
 		scoreText.text = "Score: " + score.ToString ();
 		ballAmountText.text = "Balls: " + ballAmount.ToString ();
@@ -28,6 +30,7 @@ public class BallBehaviour2 : MonoBehaviour {
         taskActive = false;
 		//Initial starting position
 	
+       
 	}
 		
 	void Update () {

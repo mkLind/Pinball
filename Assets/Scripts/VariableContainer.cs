@@ -27,7 +27,11 @@ public class VariableContainer : MonoBehaviour {
     public Text tasktext;
     public int passCond;
 
-	void Start () {
+    private AudioSource audioSource;
+    private AudioClip onemoreturn;
+
+    void Start () {
+        audioSource = GetComponent<AudioSource>();
         trig = GameObject.Find("StoryElement").GetComponent<StoryTrigger>();
         triggers = GameObject.FindGameObjectsWithTag("storypad");
 
@@ -65,6 +69,7 @@ public class VariableContainer : MonoBehaviour {
 
         // Set the task 
         if (task != "" && cond != "" && !bll.taskStatus()) {
+            audioSource.PlayOneShot(onemoreturn, 1f);
             // checking the task type.
             if (task=="main") {
                 GameObject.Find("Canvas").GetComponent<PauseMenu>().endScreenUI.SetActive(true);

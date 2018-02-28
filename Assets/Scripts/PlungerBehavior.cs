@@ -34,7 +34,7 @@ public class PlungerBehavior : MonoBehaviour {
 
 
 
-
+    private AudioSource loaderAudioSource;
 
 
 
@@ -44,6 +44,8 @@ public class PlungerBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        loaderAudioSource = GetComponent<AudioSource>();
+
         shoot = Animator.StringToHash("Shoot");
       
         load = Animator.StringToHash("Load");
@@ -82,7 +84,7 @@ public class PlungerBehavior : MonoBehaviour {
 
 
 	}
-  
+
     // Update is called once per frame
     void FixedUpdate () {
         //Keyboard input. Checked key explicitly so touch events do not register.
@@ -91,9 +93,11 @@ public class PlungerBehavior : MonoBehaviour {
 		if (Input.GetKey ("s")) {
 			// if s is pressed
 			if (Input.GetAxis (inputName) == 1) {
+                if (!loaderAudioSource.isPlaying)
+                    loaderAudioSource.Play();
 				pressed = true;
 
-                if (pressed) {
+                if (pressed && anim != null) {
                     anim.SetTrigger(load);
                 }
 				// If current position of the plunger is greater than the max position
@@ -128,50 +132,50 @@ public class PlungerBehavior : MonoBehaviour {
 			} else {
                 pressed = false;
 				
-					// Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
-					if (!forceApplied) {
+				// Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
+				if (!forceApplied) {
 
-						plunger.AddForce (transform.forward * plungerEnergy * damper);
+					plunger.AddForce (transform.forward * plungerEnergy * damper);
                     anim.ResetTrigger(load);
                     anim.SetTrigger(shoot);
                          
 
-                       forceApplied = true;
-                        maxReached = false;
-                    }
+                    forceApplied = true;
+                    maxReached = false;
+                }
                   
 
-                    // if plunger going up
-                    if (current < min && forceApplied) {
+                // if plunger going up
+                if (current < min && forceApplied) {
 
+                    // release Z, move and add to position while reducing energy
+                    plunger.constraints = origConstr;
 
+					plunger.MovePosition (transform.position + new Vector3 (0, 0, plungerEnergy * damper) * Time.deltaTime);
 
-                        // release Z, move and add to position while reducing energy
-                        plunger.constraints = origConstr;
+					currentPos = plunger.position.z;
+					// Change current indicator and plunger energy only if plunger energy is higher than zero.
+					if (plungerEnergy > 0) {
+						plungerEnergy -= plungerEnergyAddition;
+						current += 1 * (int)plungerEnergy;
+					}
 
-						plunger.MovePosition (transform.position + new Vector3 (0, 0, plungerEnergy * damper) * Time.deltaTime);
+				} else {
 
-						currentPos = plunger.position.z;
-						// Change current indicator and plunger energy only if plunger energy is higher than zero.
-						if (plungerEnergy > 0) {
-							plungerEnergy -= plungerEnergyAddition;
-							current += 1 * (int)plungerEnergy;
-						}
+                    //releaseAudioSource.Stop();
 
-					} else {
-                       
-                        // freeze y and z set position to rest and energy to 0.
-                        plunger.constraints = RigidbodyConstraints.FreezePositionZ;
-						plunger.constraints = RigidbodyConstraints.FreezePositionY;
-						plungerEnergy = 0f;
-						plunger.position = restPos;
-						curPos = restPos;
-						current = min - 1;
-						currentPos = plunger.position.z;
-						forceApplied = false;
+                    // freeze y and z set position to rest and energy to 0.
+                    plunger.constraints = RigidbodyConstraints.FreezePositionZ;
+					plunger.constraints = RigidbodyConstraints.FreezePositionY;
+					plungerEnergy = 0f;
+					plunger.position = restPos;
+					curPos = restPos;
+					current = min - 1;
+					currentPos = plunger.position.z;
+					forceApplied = false;
 						
-                        anim.SetTrigger(back);
-                    }
+                    anim.SetTrigger(back);
+                }
 				
 			}
 		} 
@@ -249,8 +253,12 @@ public class PlungerBehavior : MonoBehaviour {
 			}
 		}else {
 			if (pressed) {
-				// Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
-				if (!forceApplied) {
+
+                if (loaderAudioSource.isPlaying)
+                    loaderAudioSource.Stop();
+
+                // Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
+                if (!forceApplied) {
 
 					plunger.AddForce (transform.forward * plungerEnergy * damper);
 

@@ -7,8 +7,11 @@ public class BumperBehaviour : MonoBehaviour {
 	public float force = 300.0f;
     private BallBehaviour bb;
 
+    private AudioSource audioSource;
+
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         bb = GameObject.Find("Ball").GetComponent<BallBehaviour>();
     }
 
@@ -17,6 +20,7 @@ public class BumperBehaviour : MonoBehaviour {
 	{
 		if (col.collider.GetComponent<Rigidbody>() != null) 
 		{
+            audioSource.Play();
 			//Force to a forward direction (Z-axis of the trigger) is added 
 			//to the collision component that has a rigidbody (the ball)
 			col.gameObject.GetComponent<Rigidbody>().AddForce (new Vector3(0,0,force));

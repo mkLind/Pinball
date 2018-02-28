@@ -17,6 +17,11 @@ public class BallBehaviour : MonoBehaviour {
 	public Vector3 startPosition;
     public bool taskActive;
 
+    private AudioSource moveAudioSource;
+    private AudioSource collisionAudioSource;
+
+    private float speed;
+
 	void Start () {
 		score = 0;
 		scoreText.text = "Score: " + score.ToString ();
@@ -28,14 +33,27 @@ public class BallBehaviour : MonoBehaviour {
 
 		threshold = -5f;
         taskActive = false;
-		//Initial starting position
-	
+        //Initial starting position
+
+        var source = GetComponents<AudioSource>();
+        moveAudioSource = source[0];
+        collisionAudioSource = source[1];
 	}
 		
 	void Update () {
 		//Score is updated every frame in case collisions with other objects change it
 		scoreText.text = "Score: " + score.ToString ();
+
 	}
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name != "Table")
+        {
+            collisionAudioSource.volume = speed / 10f;
+            collisionAudioSource.Play();
+        }
+    }
 
     public void setTaskActive() {
         taskActive = true;
@@ -52,8 +70,23 @@ public class BallBehaviour : MonoBehaviour {
     }
 
     void FixedUpdate () {
-		//Checks if the ball falls out of the board (goes below the treshold)
-		if (transform.position.y < threshold) 
+        Rigidbody ballBody = GetComponent<Rigidbody>();
+        // update the speed of the ball
+        speed = ballBody.velocity.magnitude;
+        if (!GetComponent<Rigidbody>().IsSleeping())
+        {
+            // update pitch to match speed
+            moveAudioSource.pitch = speed / 100f + 0.95f;
+            moveAudioSource.volume = speed / 10f;
+
+            // start the sound if not yet playing
+            if (!moveAudioSource.isPlaying)
+                moveAudioSource.Play();
+
+        }
+
+        //Checks if the ball falls out of the board (goes below the treshold)
+        if (transform.position.y < threshold) 
 		{
 			//Updating the amount of balls
 			ballAmount--;
@@ -61,8 +94,8 @@ public class BallBehaviour : MonoBehaviour {
 				ballAmountText.text = "Balls: " + ballAmount.ToString ();
 
 				//Zeroing out the velocity and repositioning the ball to the starting point
-				GetComponent<Rigidbody>().velocity = Vector3.zero;
-				GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
+				ballBody.velocity = Vector3.zero;
+				ballBody.angularVelocity = Vector3.zero;
 				transform.position = startPosition;
 			} else {
 				//Saving the possible highscore

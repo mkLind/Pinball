@@ -43,7 +43,6 @@ public class TriggerGroupBehaviour : MonoBehaviour {
 
     void ComponentCollided(GameObject child)
     {
-        Debug.Log("oh mama");
         //child.GetComponent<Material>().color = Color.red;
         var material = child.GetComponent<Renderer>().material;
 
