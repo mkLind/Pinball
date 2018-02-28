@@ -20,11 +20,22 @@ public class PlungerBehavior : MonoBehaviour {
 	public bool forceApplied = false;
 	public bool maxReached;
 	public string inputName;
+    public Animator anim;
 	//public Vector3 curPos;
 	public Vector3 restPos;
 	public Vector3 curPos;
 	Rigidbody plunger;
 	Rigidbody plungerBase;
+
+
+
+    int loadHash = Animator.StringToHash("Load");
+    int shootHash = Animator.StringToHash("Shoot");
+    int backHash = Animator.StringToHash("Back");
+    int idleHash = Animator.StringToHash("Idle");
+    int maxHash = Animator.StringToHash("Max");
+
+
 
 
     
@@ -36,6 +47,8 @@ public class PlungerBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		pressed = false;
+        anim = GetComponent<Animator>();
+        maxReached = false;
 
 		plungB = GameObject.Find ("plungerBase").GetComponent<PlungerBase> ();
      
@@ -65,19 +78,22 @@ public class PlungerBehavior : MonoBehaviour {
   
     // Update is called once per frame
     void FixedUpdate () {
-		//Keyboard input. Checked key explicitly so touch events do not register.
+        //Keyboard input. Checked key explicitly so touch events do not register.
+        AnimatorStateInfo inf = anim.GetCurrentAnimatorStateInfo(0); 
+        
 		if (Input.GetKey ("s")) {
 			// if s is pressed
 			if (Input.GetAxis (inputName) == 1) {
 				pressed = true;
 				// If current position of the plunger is greater than the max position
 				if (current > max) {
+                    changeAnimation(inf,pressed,forceApplied,maxReached);
 
 
-					// free Z and move the plunger while reducing position and adding energy to plunger
-					//=> plunger moves downwards because of this
+                    // free Z and move the plunger while reducing position and adding energy to plunger
+                    //=> plunger moves downwards because of this
 
-					plunger.constraints = origConstr;
+                    plunger.constraints = origConstr;
 					plunger.MovePosition (transform.position - transform.forward * Time.deltaTime * plungerLoadSpeed);
 					currentPos = plunger.position.z;
 					plungerEnergy = plungerEnergy + plungerEnergyAddition;
@@ -91,9 +107,10 @@ public class PlungerBehavior : MonoBehaviour {
 					plunger.constraints = RigidbodyConstraints.FreezePositionZ;
 					plunger.constraints = RigidbodyConstraints.FreezePositionY;
 					plunger.position = curPos;
+                    maxReached = true;
 
-
-				}
+                    changeAnimation(inf, pressed, forceApplied, maxReached);
+                }
 			} else {
 				if (pressed) {
 					// Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
@@ -103,14 +120,15 @@ public class PlungerBehavior : MonoBehaviour {
 
                   
 						forceApplied = true;
-					}
+                        maxReached = false;
+                    }
 					// if plunger going up
 					if (current < min && forceApplied) {
+                        changeAnimation(inf, pressed, forceApplied, maxReached);
 
 
-
-						// release Z, move and add to position while reducing energy
-						plunger.constraints = origConstr;
+                        // release Z, move and add to position while reducing energy
+                        plunger.constraints = origConstr;
 
 						plunger.MovePosition (transform.position + new Vector3 (0, 0, plungerEnergy * damper) * Time.deltaTime);
 
@@ -122,9 +140,9 @@ public class PlungerBehavior : MonoBehaviour {
 						}
 
 					} else {
-
-						// freeze y and z set position to rest and energy to 0.
-						plunger.constraints = RigidbodyConstraints.FreezePositionZ;
+                       
+                        // freeze y and z set position to rest and energy to 0.
+                        plunger.constraints = RigidbodyConstraints.FreezePositionZ;
 						plunger.constraints = RigidbodyConstraints.FreezePositionY;
 						plungerEnergy = 0f;
 						plunger.position = restPos;
@@ -145,12 +163,12 @@ public class PlungerBehavior : MonoBehaviour {
 				pressed = true;
 				// If current position of the plunger is greater than the max position
 				if (current > max) {
+                    
 
+                    // free Z and move the plunger while reducing position and adding energy to plunger
+                    //=> plunger moves downwards because of this
 
-					// free Z and move the plunger while reducing position and adding energy to plunger
-					//=> plunger moves downwards because of this
-
-					plunger.constraints = origConstr;
+                    plunger.constraints = origConstr;
 					plunger.MovePosition (transform.position - transform.forward * Time.deltaTime);
 					currentPos = plunger.position.z;
 					plungerEnergy = plungerEnergy + plungerEnergyAddition;
@@ -159,9 +177,9 @@ public class PlungerBehavior : MonoBehaviour {
 
 
 				} else {
-
-					// Freeze y and z and set position to current position
-					plunger.constraints = RigidbodyConstraints.FreezePositionZ;
+                    anim.SetTrigger(backHash);
+                    // Freeze y and z and set position to current position
+                    plunger.constraints = RigidbodyConstraints.FreezePositionZ;
 					plunger.constraints = RigidbodyConstraints.FreezePositionY;
 					plunger.position = curPos;
 
@@ -178,11 +196,11 @@ public class PlungerBehavior : MonoBehaviour {
 					}
 					// if plunger going up
 					if (current < min && forceApplied) {
+                        anim.SetTrigger(shootHash);
 
 
-
-						// release Z, move and add to position while reducing energy
-						plunger.constraints = origConstr;
+                        // release Z, move and add to position while reducing energy
+                        plunger.constraints = origConstr;
 
 						plunger.MovePosition (transform.position + new Vector3 (0, 0, plungerEnergy * damper) * Time.deltaTime);
 
@@ -205,8 +223,9 @@ public class PlungerBehavior : MonoBehaviour {
 						currentPos = plunger.position.z;
 						forceApplied = false;
 						pressed = false;
+                        anim.SetTrigger(backHash);
 
-					}
+                    }
 				}
 			}
 		}else {
@@ -252,4 +271,33 @@ public class PlungerBehavior : MonoBehaviour {
 			}
 		}
 	}
+
+
+
+    public void changeAnimation(AnimatorStateInfo inf, bool pressed, bool forceApplied, bool maxReached) {
+
+        if (inf.nameHash == idleHash && pressed)
+        {
+            anim.SetTrigger(loadHash);
+        }
+        else {
+            anim.SetTrigger(idleHash);
+        }
+        if (maxReached && inf.nameHash == loadHash)
+        {
+            anim.SetTrigger(maxHash);
+        }
+        else {
+            anim.SetTrigger(loadHash);
+        }
+        if (!pressed && inf.nameHash == maxHash)
+        {
+            anim.SetTrigger(shootHash);
+
+        }
+        else {
+            anim.SetTrigger(maxHash);
+        }
+
+    }
 }
