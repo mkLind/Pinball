@@ -45,7 +45,7 @@ public class PlungerBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         shoot = Animator.StringToHash("Shoot");
-        Max = Animator.StringToHash("Max");
+      
         load = Animator.StringToHash("Load");
         idle = Animator.StringToHash("Idle");
         back = Animator.StringToHash("Back");
@@ -92,6 +92,7 @@ public class PlungerBehavior : MonoBehaviour {
 			// if s is pressed
 			if (Input.GetAxis (inputName) == 1) {
 				pressed = true;
+
                 if (pressed) {
                     anim.SetTrigger(load);
                 }
@@ -118,25 +119,30 @@ public class PlungerBehavior : MonoBehaviour {
 					plunger.constraints = RigidbodyConstraints.FreezePositionY;
 					plunger.position = curPos;
                     maxReached = true;
+                   
 
-
+                   
+                      
+                    
                 }
 			} else {
-                if (pressed && !maxReached) {
-                    anim.SetTrigger(idle);
-                }
-				if (pressed) {
+                pressed = false;
+				
 					// Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
 					if (!forceApplied) {
 
 						plunger.AddForce (transform.forward * plungerEnergy * damper);
+                    anim.ResetTrigger(load);
+                    anim.SetTrigger(shoot);
+                         
 
-                  
-						forceApplied = true;
+                       forceApplied = true;
                         maxReached = false;
                     }
-					// if plunger going up
-					if (current < min && forceApplied) {
+                  
+
+                    // if plunger going up
+                    if (current < min && forceApplied) {
 
 
 
@@ -163,10 +169,10 @@ public class PlungerBehavior : MonoBehaviour {
 						current = min - 1;
 						currentPos = plunger.position.z;
 						forceApplied = false;
-						pressed = false;
-
-					}
-				}
+						
+                        anim.SetTrigger(back);
+                    }
+				
 			}
 		} 
 		//Touch input
@@ -283,6 +289,8 @@ public class PlungerBehavior : MonoBehaviour {
 				}
 			}
 		}
+
+        
 	}
 
 

@@ -3215,6 +3215,63 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a16c7ddb0f00b7449b0f8a3b9cb0cf16, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &441221965 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
+  m_PrefabInternal: {fileID: 1780805014}
+--- !u!114 &441221966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 441221965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab61280650805445bc7a8cfefddab8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPos: -3.7
+  currentPos: -3
+  maxPos: -7
+  pressed: 0
+  min: 0
+  max: -50
+  current: -1
+  plungerEnergy: 0
+  plungerEnergyAddition: 0.25
+  plungerLoadSpeed: 0
+  damper: 0.25
+  forceApplied: 0
+  maxReached: 0
+  inputName: Plunger
+  anim: {fileID: 441221967}
+  restPos: {x: 0, y: 0, z: 0}
+  curPos: {x: 0, y: 0, z: 0}
+  shoot: 0
+  Max: 0
+  load: 0
+  idle: 0
+  back: 0
+--- !u!95 &441221967 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9500000, guid: 7f0c4144f1d359644b884d4bcf69e6e2,
+    type: 3}
+  m_PrefabInternal: {fileID: 1780805014}
+--- !u!54 &441221969
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 441221965}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &441839844
 GameObject:
   m_ObjectHideFlags: 0
@@ -9025,36 +9082,52 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400004, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 8.37
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.49
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -12.65
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.99971604
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.023830086
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
       propertyPath: m_RootOrder
       value: 31
       objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 182.73099
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e0c7f2ea46ef71c43bb4cd8d4b56bbb9, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f0c4144f1d359644b884d4bcf69e6e2, type: 3}
   m_IsPrefabParent: 0
