@@ -11,12 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Tommi.unity
     guid: 07b5c8600ccccfb45b9cc2a52f88a992
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Markus.unity
     guid: d2251df3896cc054c9d41f4830646291
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Teppo.unity
     guid: 341ee2f483af18745867c1b06a73a287
