@@ -21,8 +21,10 @@ public class BallBehaviour : MonoBehaviour {
     private AudioSource collisionAudioSource;
 
     private float speed;
+	Rigidbody ballBody;
 
 	void Start () {
+		ballBody = GetComponent<Rigidbody>();
 		score = 0;
 		scoreText.text = "Score: " + score.ToString ();
 		ballAmountText.text = "Balls: " + ballAmount.ToString ();
@@ -40,11 +42,6 @@ public class BallBehaviour : MonoBehaviour {
         collisionAudioSource = source[1];
 	}
 		
-	void Update () {
-		//Score is updated every frame in case collisions with other objects change it
-		scoreText.text = "Score: " + score.ToString ();
-
-	}
 
     void OnCollisionEnter(Collision collision)
     {
@@ -70,10 +67,12 @@ public class BallBehaviour : MonoBehaviour {
     }
 
     void FixedUpdate () {
-        Rigidbody ballBody = GetComponent<Rigidbody>();
+		//Score is updated in case collisions with other objects change it
+		scoreText.text = "Score: " + score.ToString ();
+
         // update the speed of the ball
         speed = ballBody.velocity.magnitude;
-        if (!GetComponent<Rigidbody>().IsSleeping())
+		if (!ballBody.IsSleeping())
         {
             // update pitch to match speed
             moveAudioSource.pitch = speed / 100f + 0.95f;

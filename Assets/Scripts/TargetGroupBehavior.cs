@@ -12,7 +12,8 @@ public class TargetGroupBehavior : MonoBehaviour {
 	void Start () {
         status = new Dictionary<int, int>();
         targets = GameObject.FindGameObjectsWithTag("Target");
-        target_amount = /*targets.Length*/ 3;	//ei toimi muuten jos ei laita määrää
+        //target_amount = targets.Length;
+		target_amount = 3;	//ei toimi muuten jos ei laita määrää
         targets_hit = 0;
         taskActive = false;
 	}

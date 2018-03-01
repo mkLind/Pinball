@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Xml;
 using System.IO;
 using System.Xml.Linq;
@@ -30,10 +31,18 @@ public class StoryTrigger : MonoBehaviour {
 
 	public Font myFont;
 
+	//Set in inspector from canvas
+	public GameObject storyPanel;
+	public GameObject storyText;
+	public GameObject buttonText1;
+	public GameObject buttonText2;
+	public GameObject Button1;
+	public GameObject Button2;
+
 	// Use this for initialization
 	void Start () {
         // Position the window and set the story element to un triggered state
-		windowR = new Rect(-15, 50, Screen.width, Screen.height);
+		//windowR = new Rect(0, 0, Screen.width, Screen.height);
 
         triggered = false;
         active = true;
@@ -46,8 +55,7 @@ public class StoryTrigger : MonoBehaviour {
         cont = GameObject.Find("Table").GetComponent<VariableContainer>();
         behav = GameObject.Find("Ball").GetComponent<BallBehaviour>();
 
-
-        string loadFrom = Application.dataPath + @"/Resources/Story.XML"; // ÅAth for loading the STORY xml
+		string loadFrom = Application.streamingAssetsPath + @"/Story.XML"; // ÅAth for loading the STORY xml
         XmlDocument doc = new XmlDocument();// XML DOCUMENT OBJECT
         string content = System.IO.File.ReadAllText(loadFrom); // Read the contents of the XML file
 
@@ -73,6 +81,8 @@ public class StoryTrigger : MonoBehaviour {
 
     }
 
+	/*	Replaced with canvas elements
+	 * 
     // Event handling. Add buttons, their shapes and what they do
     void DoMyWindow(int windowID) {
 		
@@ -80,10 +90,11 @@ public class StoryTrigger : MonoBehaviour {
 		GUI.skin.button.hover.textColor = Color.black;
 		GUI.skin.button.active.textColor = Color.black;
 		GUI.skin.label.normal.textColor = Color.black;
+		//GUI.skin.window.border.Add(new Rect(10,-10,-10,10));
 
 		GUI.Label(new Rect((Screen.width / 2) - 175, 100, 400, 300), Text); // DISplay the title as a label
         // Specify button. First dimensions and then text
-		if (GUI.Button(new Rect((Screen.width/2) - 225, 330, 450, 50), options[0])) {
+		if (GUI.Button(new Rect((Screen.width/2) - 225, 270, 450, 50), options[0])) {
 
             Time.timeScale = 1; // Enable rendering
             triggered = false; // Set to untriggered state
@@ -101,7 +112,7 @@ public class StoryTrigger : MonoBehaviour {
             // callback for sending the current task and condition to ValueContainer
             cont.SetTaskAndCond(currentTask, currentCondition);
 
-		} else if (GUI.Button(new Rect((Screen.width / 2) - 225, 400, 450, 50), options[1])) {
+		} else if (GUI.Button(new Rect((Screen.width / 2) - 225, 340, 450, 50), options[1])) {
 
             Time.timeScale = 1;
             triggered = false;
@@ -136,7 +147,44 @@ public class StoryTrigger : MonoBehaviour {
            
         }
 
-    }
+    }*/
+	
+	//Attached to button event in canvas StoryPanel element
+	public void button1(){
+		triggered = false; // Set to untriggered state
+		Time.timeScale = 1; // Enable rendering
+		// Clear text and options 
+		Text = "";
+		options = new List<string>();
+		// Set prompt id for following promt in addition to current task and current condition
+		followingPromptId = optionId[0];
+		currentTask = task[0];
+		currentCondition = condition[0];
+		// reset for next prompt fetch
+		optionId = new List<string>();
+		task = new List<string>();
+		condition = new List<string>();
+		// callback for sending the current task and condition to ValueContainer
+		cont.SetTaskAndCond(currentTask, currentCondition);
+	}
+
+	//Attached to button event in canvas StoryPanel element
+	public void button2(){
+		triggered = false;
+		Time.timeScale = 1;
+
+		followingPromptId = optionId [1];
+		currentTask = task [1];
+		currentCondition = condition [1];
+
+		Text = "";
+		options = new List<string> ();
+		optionId = new List<string> ();
+		task = new List<string> ();
+		condition = new List<string> ();
+		cont.SetTaskAndCond (currentTask, currentCondition);
+	}
+		
 
     // Set the element to triggered state and freeze the scene
     void OnTriggerStay(Collider other)
@@ -145,6 +193,25 @@ public class StoryTrigger : MonoBehaviour {
         {
             FetchText(followingPromptId);
             triggered = true;
+			//Updating the storypanel canvaselements
+			if (triggered) {
+				storyPanel.SetActive(true);
+
+				//Set the storytext
+				storyText.GetComponent<Text> ().text = Text;
+				//Button 1
+				if (options [0] != null) {
+					buttonText1.GetComponent<Text> ().text = options [0];
+				}
+
+				if (options.Count == 2) {
+					Button2.SetActive (true);
+					buttonText2.GetComponent<Text> ().text = options[1];
+
+				} else {
+					Button2.SetActive (false);
+				}
+			}
             Time.timeScale = 0; // scene freezes 
             
 
@@ -174,6 +241,25 @@ public class StoryTrigger : MonoBehaviour {
     {
         FetchText(followingPromptId);
         triggered = true;
+		//Updating the storypanel canvaselements
+		if (triggered) {
+			storyPanel.SetActive(true);
+
+			//Set the storytext
+			storyText.GetComponent<Text> ().text = Text;
+			//Button 1
+			if (options [0] != null) {
+				buttonText1.GetComponent<Text> ().text = options [0];
+			}
+
+			if (options.Count == 2) {
+				Button2.SetActive (true);
+				buttonText2.GetComponent<Text> ().text = options[1];
+
+			} else {
+				Button2.SetActive (false);
+			}
+		}
         Time.timeScale = 0; // scene freezes 
     }
 

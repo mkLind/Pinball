@@ -73,9 +73,7 @@ public class VariableContainer : MonoBehaviour {
             // checking the task type.
             if (task=="main") {
 				//ei toimi
-
-                GameObject.Find("Canvas").GetComponent<PauseMenu>().endScreenUI.SetActive(true);
-
+				GameObject.Find("Canvas").GetComponent<PauseMenu>().endScreenUI.SetActive(true);
 
             }
             if (task == "bumpers") {
@@ -90,7 +88,7 @@ public class VariableContainer : MonoBehaviour {
 
             else if (task == "ABCtriggers")
             {
-                tasktext.text = "Task: Hit the ABC triggers in the following order: " + cond + ". Progress: "; // set the task text to indicate score challenge
+                tasktext.text = "Task: Hit the ABC triggers in the following order: " + cond + ".\nProgress: "; // set the task text to indicate score challenge
                 // turn the condition (= string) into a int array
                 int[] goal = new int[cond.Length];
                 for (var i = 0; i < cond.Length; i++)
@@ -116,7 +114,7 @@ public class VariableContainer : MonoBehaviour {
                 passCond = int.Parse(cond);
                 taskActive = true;
                 bll.setTaskActive();
-                tasktext.text = "Pass through the gate " + cond + " Times. Times passed: " + gate.getTimesPassed();
+				tasktext.text = "Task: Pass through the gate " + cond + " Times.\nTimes passed: " + gate.getTimesPassed();
 
 
             }
@@ -124,20 +122,20 @@ public class VariableContainer : MonoBehaviour {
 
                 taskActive = true;
                 bll.setTaskActive();
-                tasktext.text = "Plunge into the tower!";
+				tasktext.text = "Task: Plunge into the tower!";
 
             }
             else if (task == "enterNextRoom")
             {
                 bll.setTaskActive();
                 nextRoom.setTaskActive();
-                tasktext.text = cond + " by entering the room on top of the board";
+				tasktext.text = "Task: " + cond + " by entering the room on top of the board";
                 taskActive = true;
             }
             // this task will get next task automatically when completed
             else if (task == "openDoor")
             {
-                tasktext.text = "Task: Hit the ABC triggers in the following order: " + cond + ". Progress: "; // set the task text to indicate score challenge
+                tasktext.text = "Task: Hit the ABC triggers in the following order: " + cond + ".\nProgress: "; // set the task text to indicate score challenge
                 // turn the condition (= string) into a int array
                 int[] goal = new int[cond.Length];
                 for (var i = 0; i < cond.Length; i++)
@@ -167,7 +165,6 @@ public class VariableContainer : MonoBehaviour {
         if (bll.taskStatus()) {
 
             // check task type
-
             if (task == "bumpers") {
                 currentScore = bll.getScore();
                 // Check task condition, if met reset task data
@@ -179,7 +176,7 @@ public class VariableContainer : MonoBehaviour {
             {
                 // get the current progress
                 var progress = cond.Substring(0, abcTriggerGroup.GetTaskProgress());
-                tasktext.text = "Task: Hit the ABC triggers in the following order: " + cond + ". Progress: " + progress;
+                tasktext.text = "Task: Hit the ABC triggers in the following order: " + cond + ".\nProgress: " + progress;
 
                 // check if the task is completed
                 if (abcTriggerGroup.isTaskCompleted())
@@ -205,7 +202,7 @@ public class VariableContainer : MonoBehaviour {
 
                 }
                 else {
-                    tasktext.text = "Pass through the gate " + cond + " Times. Times passed: " + gate.getTimesPassed();
+					tasktext.text = "Task: Pass through the gate " + cond + " Times.\nTimes passed: " + gate.getTimesPassed();
 
                 }
 
@@ -235,7 +232,7 @@ public class VariableContainer : MonoBehaviour {
             {
                 // get the current progress
                 var progress = cond.Substring(0, abcTriggerGroup.GetTaskProgress());
-                tasktext.text = "Task: Hit the ABC triggers in the following order: " + cond + ". Progress: " + progress;
+                tasktext.text = "Task: Hit the ABC triggers in the following order: " + cond + ".\nProgress: " + progress;
 
                 // check if the task is completed
                 if (abcTriggerGroup.isTaskCompleted())
