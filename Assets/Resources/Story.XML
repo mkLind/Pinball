@@ -12,7 +12,7 @@
   </prompt>
   
   <prompt id = "s2.1">
-    <text>"Nearby troll woke up from you breaking the door. "</text>
+    <text>"Nearby a troll woke up from you breaking the door. "</text>
     <option text =" Fight it!">
       <next task="trap" cond ="hit">s3</next>
     </option>
@@ -23,7 +23,7 @@
 
   <prompt id = "s2.2">
     <text>"You successfully pick the lock. Through the doorway the hallway looks empty."</text>
-    <option text ="Click to continue">
+    <option text ="Continue inside">
       <next task="enterNextRoom" cond ="Enter the Castle">s3</next>
     </option>
    
@@ -60,7 +60,7 @@
   </prompt>
 
   <prompt id = "s6">
-    <text>"Yout carelessness set off a trap. You died."</text>
+    <text>"Your carelessness set off a trap. You died."</text>
     <option text ="Main menu">
       <next task="main" cond ="">s1</next>
     </option>

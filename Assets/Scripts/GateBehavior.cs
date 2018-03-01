@@ -21,4 +21,7 @@ public class GateBehavior : MonoBehaviour {
     public int getTimesPassed() {
         return timesPassed;
     }
+	public void setTimesPassed(int tmp) {
+		timesPassed = tmp;
+	}
 }

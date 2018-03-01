@@ -68,7 +68,7 @@ public class FlipperBehavior : MonoBehaviour {
 				spring.targetPosition = restPosition;
 			}
 		}
-		//Touch input
+		/*Touch input
 		else if (Input.touchCount > 0) {
 			foreach (Touch touch in Input.touches) {
 				//For the left half of the screen
@@ -90,7 +90,7 @@ public class FlipperBehavior : MonoBehaviour {
             }
             inputOnActivated = false;
 			spring.targetPosition = restPosition;
-		}
+		}*/
 		// Set the newly defined spring for the hinge and set it using limits.
 		hinge.spring = spring;
 	}

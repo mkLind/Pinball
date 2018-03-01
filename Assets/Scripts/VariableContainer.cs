@@ -13,7 +13,7 @@ public class VariableContainer : MonoBehaviour {
     public GateBehavior gate;
     public NextRoomBehaviour nextRoom;
     public NextRoomDoorBehaviour nextRoomDoor;
-    public TrapBehaviour trap;
+    public TowerBehaviour trap;
     public CastleBehaviour castleBehaviour;
 
     public char[] abcTriggers;
@@ -38,7 +38,7 @@ public class VariableContainer : MonoBehaviour {
         abcTriggerGroup = GameObject.Find("ABCTriggerGroup").GetComponent<TriggerGroupBehaviour>();
         gate = GameObject.Find("Gateway").GetComponent<GateBehavior>();
         targets = GameObject.Find("Targets").GetComponent<TargetGroupBehavior>();
-        trap = GameObject.Find("TrapWall").GetComponent<TrapBehaviour>();
+        trap = GameObject.Find("TrapWall").GetComponent<TowerBehaviour>();
 
         // these are used to refer the index of each trigger
         abcTriggers = new char[] { 'A', 'B', 'C' };
@@ -72,8 +72,9 @@ public class VariableContainer : MonoBehaviour {
             audioSource.PlayOneShot(onemoreturn, 1f);
             // checking the task type.
             if (task=="main") {
-                GameObject.Find("Canvas").GetComponent<PauseMenu>().endScreenUI.SetActive(true);
+				//ei toimi
 
+                GameObject.Find("Canvas").GetComponent<PauseMenu>().endScreenUI.SetActive(true);
 
 
             }
@@ -200,7 +201,7 @@ public class VariableContainer : MonoBehaviour {
                 if (gate.getTimesPassed() >= passCond)
                 {
                     disableTask();
-
+					gate.setTimesPassed (0);
 
                 }
                 else {
@@ -230,7 +231,7 @@ public class VariableContainer : MonoBehaviour {
 
             }
             // this task will get next task automatically when completed
-            else if (task == "openDoor2")
+            else if (task == "openDoor")
             {
                 // get the current progress
                 var progress = cond.Substring(0, abcTriggerGroup.GetTaskProgress());
@@ -255,7 +256,7 @@ public class VariableContainer : MonoBehaviour {
     {
         task = "";
         cond = "";
-        tasktext.text = "Task: Hit a story panel to continue with the story.";
+        tasktext.text = "Task: ";
         taskActive = false;
         bll.disableTask();
         currentScore = 0;
@@ -280,8 +281,8 @@ public class VariableContainer : MonoBehaviour {
 
             print("exited trigger");
             //Incrementing score that's in the ball script
-            BallBehaviour2 bb = col.gameObject.GetComponent<BallBehaviour2>();
-            bb.ResetBall();
+            //BallBehaviour2 bb = col.gameObject.GetComponent<BallBehaviour2>();
+            //bb.ResetBall();
         }
     }
 }
