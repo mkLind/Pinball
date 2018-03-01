@@ -33,7 +33,8 @@ public class StoryTrigger : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // Position the window and set the story element to un triggered state
-		windowR = new Rect(0,0, Screen.width, Screen.height);
+		windowR = new Rect(-15, 50, Screen.width, Screen.height);
+
         triggered = false;
         active = true;
         followingPromptId = "s1";
