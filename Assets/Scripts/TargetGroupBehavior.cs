@@ -25,6 +25,7 @@ public class TargetGroupBehavior : MonoBehaviour {
     public void initTask() {
         taskActive = true;
         status.Clear();
+        Debug.Log("RAISING TARGETS @ initTask");
         for (int i = 0; i<targets.Length;i++) {
             targets[i].GetComponent<TargetBehavior>().raise();
 

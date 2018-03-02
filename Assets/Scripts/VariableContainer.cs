@@ -48,7 +48,7 @@ public class VariableContainer : MonoBehaviour {
         nextRoom = GameObject.Find("NextRoom").GetComponent<NextRoomBehaviour>();
         nextRoomDoor = GameObject.Find("NextRoomDoor").GetComponent<NextRoomDoorBehaviour>();
 
-        //castleBehaviour = GameObject.Find("Castle").GetComponent<CastleBehaviour>();
+        castleBehaviour = GameObject.Find("TowerRoom").GetComponent<CastleBehaviour>();
 
         bll = GameObject.Find("Ball").GetComponent<BallBehaviour>();
 
@@ -69,14 +69,18 @@ public class VariableContainer : MonoBehaviour {
 
         // Set the task 
         if (task != "" && cond != "" && !bll.taskStatus()) {
+           
             audioSource.PlayOneShot(onemoreturn, 1f);
             // checking the task type.
             if (task=="main") {
-				//ei toimi
-				GameObject.Find("Canvas").GetComponent<PauseMenu>().endScreenUI.SetActive(true);
+                Debug.Log("Setting task " + task);
+                //ei toimi
+                GameObject.Find("Canvas").GetComponent<PauseMenu>().endScreenUI.SetActive(true);
 
             }
-            if (task == "bumpers") {
+            if (task == "bumpers")
+            {
+                Debug.Log("Setting task " + task);
 
                 bumpCond = int.Parse(cond);
                 tasktext.text = "Task: Raise your score with " + cond + " points."; // set the task text to indicate score challenge
@@ -88,6 +92,7 @@ public class VariableContainer : MonoBehaviour {
 
             else if (task == "ABCtriggers")
             {
+                Debug.Log("Setting task " + task);
                 tasktext.text = "Task: Hit the ABC triggers in the following order: " + cond + ".\nProgress: "; // set the task text to indicate score challenge
                 // turn the condition (= string) into a int array
                 int[] goal = new int[cond.Length];
@@ -102,8 +107,10 @@ public class VariableContainer : MonoBehaviour {
 
 
             } else if (task == "targets") {
+                Debug.Log("Setting task " + task);
                 targets.initTask();
-                tasktext.text = "Task: Hit all the wooden targets";
+                Debug.Log("TARGETS RAISED");
+                tasktext.text = "Task: Hit all the targets";
                 taskActive = true;
                 bll.setTaskActive();
 
@@ -111,6 +118,7 @@ public class VariableContainer : MonoBehaviour {
 
             }
             else if (task == "gate") {
+                Debug.Log("Setting task " + task);
                 passCond = int.Parse(cond);
                 taskActive = true;
                 bll.setTaskActive();
@@ -119,14 +127,18 @@ public class VariableContainer : MonoBehaviour {
 
             }
             else if (task == "trap") {
-
+                Debug.Log("Setting task " + task);
                 taskActive = true;
                 bll.setTaskActive();
-				tasktext.text = "Task: Plunge into the tower!";
+                if (!castleBehaviour.isOpen()) { castleBehaviour.OpenDoors(); }
+                
+
+				tasktext.text = "Task: Infiltrate the tower!";
 
             }
             else if (task == "enterNextRoom")
             {
+                Debug.Log("Setting task " + task);
                 bll.setTaskActive();
                 nextRoom.setTaskActive();
 				tasktext.text = "Task: " + cond + " by entering the room on top of the board";
@@ -135,6 +147,7 @@ public class VariableContainer : MonoBehaviour {
             // this task will get next task automatically when completed
             else if (task == "openDoor")
             {
+                Debug.Log("Setting task " + task);
                 tasktext.text = "Task: Hit the ABC triggers in the following order: " + cond + ".\nProgress: "; // set the task text to indicate score challenge
                 // turn the condition (= string) into a int array
                 int[] goal = new int[cond.Length];
@@ -165,6 +178,7 @@ public class VariableContainer : MonoBehaviour {
         if (bll.taskStatus()) {
 
             // check task type
+            
             if (task == "bumpers") {
                 currentScore = bll.getScore();
                 // Check task condition, if met reset task data
@@ -189,6 +203,7 @@ public class VariableContainer : MonoBehaviour {
             }
             else if (task == "targets") {
                 if (targets.isTaskFinished()) {
+                    Debug.Log("TARGET TASK FINISHED, DISABLING TASK");
                     disableTask();
 
                 }

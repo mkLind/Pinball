@@ -72,7 +72,7 @@ public class TargetBehavior : MonoBehaviour {
     }
 
 
-    void raiseTarget()
+   public void raiseTarget()
     {
         if (goingUP)
         {
@@ -87,12 +87,13 @@ public class TargetBehavior : MonoBehaviour {
             goingUP = false;
             raised = true;
             lowered = false;
+
             freeze();
         }
 
     }
 
-    void lowerTarget()
+   public void lowerTarget()
     {
         if (goingDOWN)
         {
@@ -106,6 +107,7 @@ public class TargetBehavior : MonoBehaviour {
             goingDOWN = false;
             raised = false;
             lowered = true;
+            hit = false;
             freeze();
         }
 

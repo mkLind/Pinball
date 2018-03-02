@@ -69,4 +69,7 @@ public class CastleBehaviour : MonoBehaviour {
         open = false;
         audioSource.Play();
     }
+    public bool isOpen() {
+        return open;
+    }
 }
