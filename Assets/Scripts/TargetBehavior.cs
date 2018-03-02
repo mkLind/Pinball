@@ -11,14 +11,21 @@ public class TargetBehavior : MonoBehaviour {
     public bool goingDOWN;
     public bool hit;
     public Vector3 origpos;
+    public Animator anim;
     RigidbodyConstraints constr;
+    public int rise;
+    public int hithash;
+
 
 
 	// Use this for initialization
 	void Start () {
+        rise = Animator.StringToHash("Raise");
+        hithash = Animator.StringToHash("Hit");
 
 
-
+        anim = GetComponent<Animator>();
+        
         target = GetComponent<Rigidbody>();
         raised = false;
         lowered = true;
@@ -77,13 +84,17 @@ public class TargetBehavior : MonoBehaviour {
         if (goingUP)
         {
             // change position
-            target.transform.position += new Vector3(0, 1.25f, 0);
+            anim.SetTrigger(rise);
+            anim.ResetTrigger(hithash);
+
+            //target.transform.position += new Vector3(0, 1.25f, 0);
 
 
         }
         // if long enough moved, then stop and set state to raised
-        if (target.position.y <= origpos.y + 1000f)
-        {
+       // if (target.position.y <= origpos.y + 1000f)
+        if (anim.GetAnimatorTransitionInfo(0).IsName("Down -> Hit"))
+            {
             goingUP = false;
             raised = true;
             lowered = false;
@@ -97,17 +108,21 @@ public class TargetBehavior : MonoBehaviour {
     {
         if (goingDOWN)
         {
+            anim.SetTrigger(hithash);
+            anim.ResetTrigger(rise);
 
-            target.transform.position += new Vector3(0, -0.25f, 0);
+
+            //target.transform.position += new Vector3(0, -0.25f, 0);
 
 
         }
-        if (target.position.y == origpos.y)
-        {
+        //if (target.position.y == origpos.y)
+        if (anim.GetAnimatorTransitionInfo(0).IsName("Hit -> Down"))
+            {
             goingDOWN = false;
             raised = false;
             lowered = true;
-            hit = false;
+            hit = false; // Needs to be set to unhit state
             freeze();
         }
 

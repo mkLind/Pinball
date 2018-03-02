@@ -48,7 +48,8 @@ public class VariableContainer : MonoBehaviour {
         nextRoom = GameObject.Find("NextRoom").GetComponent<NextRoomBehaviour>();
         nextRoomDoor = GameObject.Find("NextRoomDoor").GetComponent<NextRoomDoorBehaviour>();
 
-        castleBehaviour = GameObject.Find("TowerRoom").GetComponent<CastleBehaviour>();
+        castleBehaviour = GameObject.Find("TowerRoom").GetComponent<CastleBehaviour>(); // Fetch castle behavior from Tower room.
+
 
         bll = GameObject.Find("Ball").GetComponent<BallBehaviour>();
 
