@@ -36,7 +36,7 @@ public class TargetBehavior : MonoBehaviour {
         origpos = target.position;
         bll = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallBehaviour>();
         freeze();
-
+        anim.SetTrigger(hithash);
     }
     // Freeze position of the target
     void freeze() {
@@ -66,6 +66,7 @@ public class TargetBehavior : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Target HIT¨, and target raised: " + raised );
         if (other.gameObject.CompareTag("Ball"))
         {
             if (raised) {
@@ -81,6 +82,7 @@ public class TargetBehavior : MonoBehaviour {
 
    public void raiseTarget()
     {
+        Debug.Log("Raising target at Target Behavior");
         if (goingUP)
         {
             // change position
@@ -95,6 +97,7 @@ public class TargetBehavior : MonoBehaviour {
        // if (target.position.y <= origpos.y + 1000f)
         if (anim.GetAnimatorTransitionInfo(0).IsName("Down -> Hit"))
             {
+            Debug.Log("Transition finished at raiseTarget");
             goingUP = false;
             raised = true;
             lowered = false;
@@ -108,6 +111,7 @@ public class TargetBehavior : MonoBehaviour {
     {
         if (goingDOWN)
         {
+            Debug.Log("Lowering target at Target Behavior");
             anim.SetTrigger(hithash);
             anim.ResetTrigger(rise);
 
@@ -119,6 +123,7 @@ public class TargetBehavior : MonoBehaviour {
         //if (target.position.y == origpos.y)
         if (anim.GetAnimatorTransitionInfo(0).IsName("Hit -> Down"))
             {
+            Debug.Log("Transition finished at lowerTarget");
             goingDOWN = false;
             raised = false;
             lowered = true;

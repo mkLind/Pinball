@@ -39,7 +39,7 @@ public class TargetGroupBehavior : MonoBehaviour {
              // IF hit target is not already added to hit targets, add it.
                 if (!status.ContainsKey(i)) {
                     targets_hit += 1;
-
+                    Debug.Log("Targets Hit: " + targets_hit) ;
                     status.Add(i, targets_hit);
                 
 
