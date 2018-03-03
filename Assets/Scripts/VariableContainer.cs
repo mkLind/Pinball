@@ -120,6 +120,7 @@ public class VariableContainer : MonoBehaviour {
             }
             else if (task == "gate") {
                 Debug.Log("Setting task " + task);
+                gate.setTimesPassed(0);
                 passCond = int.Parse(cond);
                 taskActive = true;
                 bll.setTaskActive();

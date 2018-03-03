@@ -35,7 +35,7 @@
       <next task="targets" cond ="hitAll">s4</next>
     </option>
     <option text ="Go through the door">
-      <next task="gate" cond ="1">s5</next>
+      <next task="bumpers" cond ="600">s5</next>
     </option>
   </prompt>
 
@@ -55,7 +55,7 @@
       <next task="bumpers" cond ="500">s6</next>
     </option>
     <option text ="Carefully sneak through the corridor">
-      <next task="gate" cond ="3">s7</next>
+      <next task="ABCtriggers" cond ="CBA">s7</next>
     </option>
   </prompt>
 
@@ -92,7 +92,7 @@
   <prompt id = "s7">
     <text>"At the end of the corridor you see ladder. You climb up the ladder and on the second floor you see a dragon keeping a princess prisoner. "</text>
     <option text ="Try to talk to the dragon">
-      <next task="gate" cond ="1">s7.5</next>
+      <next task="targets" cond ="hitAll">s7.5</next>
     </option>
     <option text ="Try to attack the dragon">
       <next task="trap" cond ="hit">s8</next>
@@ -123,22 +123,18 @@
 
   <prompt id = "s10.1">
     <text>"You killed the dragon. All is well again."</text>
-    <option text ="Start over">
-      <next task="bumpers" cond ="500">s1</next>
+    <option text ="Back to the main menu.">
+      <next task="main" cond ="">s1</next>
     </option>
-    <option text ="Exit the game">
-      <next task="bumpers" cond ="500">s2</next>
-    </option>
+  
   </prompt>
   
     <prompt id = "s10.2">
     <text>"You saved the Dragon from the princess. All is well again!"</text>
-    <option text ="Start over">
-      <next task="bumpers" cond ="500">s1</next>
+    <option text ="Back to the main menu.">
+      <next task="main" cond ="">s1</next>
     </option>
-    <option text ="Exit the game">
-      <next task="bumpers" cond ="500">s2</next>
-    </option>
+  
   </prompt>
 
   <prompt id = "s11">

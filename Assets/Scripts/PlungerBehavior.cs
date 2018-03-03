@@ -93,6 +93,8 @@ public class PlungerBehavior : MonoBehaviour
         //AnimatorStateInfo inf = anim.GetCurrentAnimatorStateInfo(0); 
 
         // if s is pressed
+        
+        
         if (Input.GetAxis(inputName) == 1)
         {
             pressed = true;
@@ -104,6 +106,7 @@ public class PlungerBehavior : MonoBehaviour
             {
                 anim.SetTrigger(load);
                 anim.ResetTrigger(idle);
+                anim.ResetTrigger(back);
             }
             // If current position of the plunger is greater than the max position
             if (current > max)
@@ -144,18 +147,16 @@ public class PlungerBehavior : MonoBehaviour
             // Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
             if (pressed)
             {
+              
                 if (!forceApplied)
                 {
+                    anim.ResetTrigger(load);
+                    anim.SetTrigger(shoot);
 
                     //plunger.AddForce (transform.forward * plungerEnergy * damper);
-                    if (ballInTouch)
-                    {
-                        GameObject.Find("Ball").GetComponent<Rigidbody>().AddForce(transform.forward * plungerEnergy * damper);
-                        ballInTouch = false;
-                    }
+                  
                  
-                        anim.ResetTrigger(load);
-                        anim.SetTrigger(shoot);
+                       
                     
 
                     forceApplied = true;
@@ -165,6 +166,12 @@ public class PlungerBehavior : MonoBehaviour
                 {
                     anim.SetTrigger(back);
                     anim.ResetTrigger(shoot);
+
+                    if (ballInTouch)
+                    {
+                        GameObject.Find("Ball").GetComponent<Rigidbody>().AddForce(transform.forward * plungerEnergy * damper);
+                        ballInTouch = false;
+                    }
                 }
 
                     // if plunger going up
@@ -203,11 +210,7 @@ public class PlungerBehavior : MonoBehaviour
                     forceApplied = false;
                     pressed = false;
                     anim.ResetTrigger(shoot);
-                    if (anim.GetAnimatorTransitionInfo(0).IsName("Shoot -> Back"))
-                    {
-                        anim.ResetTrigger(back);
-                        anim.SetTrigger(idle);
-                    }
+                  
                 }
 
             }
