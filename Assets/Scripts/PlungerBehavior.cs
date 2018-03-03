@@ -103,6 +103,7 @@ public class PlungerBehavior : MonoBehaviour
             if (pressed)
             {
                 anim.SetTrigger(load);
+                anim.ResetTrigger(idle);
             }
             // If current position of the plunger is greater than the max position
             if (current > max)
@@ -152,18 +153,22 @@ public class PlungerBehavior : MonoBehaviour
                         GameObject.Find("Ball").GetComponent<Rigidbody>().AddForce(transform.forward * plungerEnergy * damper);
                         ballInTouch = false;
                     }
-
-                    anim.ResetTrigger(load);
-                    anim.SetTrigger(shoot);
-
+                 
+                        anim.ResetTrigger(load);
+                        anim.SetTrigger(shoot);
+                    
 
                     forceApplied = true;
                     maxReached = false;
                 }
+                if (anim.GetAnimatorTransitionInfo(0).IsName("Load -> Shoot"))
+                {
+                    anim.SetTrigger(back);
+                    anim.ResetTrigger(shoot);
+                }
 
-
-                // if plunger going up
-                if (plungerEnergy > 0 && forceApplied)
+                    // if plunger going up
+                    if (plungerEnergy > 0 && forceApplied)
                 {
 
 
@@ -178,8 +183,10 @@ public class PlungerBehavior : MonoBehaviour
 
                     plungerEnergy -= plungerEnergyAddition;
                     current += 1 * (int)plungerEnergy;
-
-
+                   
+                        
+                    
+                    
                 }
                 else
                 {
@@ -196,12 +203,16 @@ public class PlungerBehavior : MonoBehaviour
                     forceApplied = false;
                     pressed = false;
                     anim.ResetTrigger(shoot);
-                    anim.SetTrigger(back);
-                    anim.SetTrigger(idle);
+                    if (anim.GetAnimatorTransitionInfo(0).IsName("Shoot -> Back"))
+                    {
+                        anim.ResetTrigger(back);
+                        anim.SetTrigger(idle);
+                    }
                 }
 
             }
         }
+
 
 
 
@@ -211,6 +222,8 @@ public class PlungerBehavior : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ball"))
         {
+            anim.SetTrigger(idle);
+
             ballInTouch = true;
         }
     }

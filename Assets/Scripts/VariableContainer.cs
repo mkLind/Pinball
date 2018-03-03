@@ -123,7 +123,7 @@ public class VariableContainer : MonoBehaviour {
                 passCond = int.Parse(cond);
                 taskActive = true;
                 bll.setTaskActive();
-				tasktext.text = "Task: Pass through the gate " + cond + " Times.\nTimes passed: " + gate.getTimesPassed();
+				tasktext.text = "Task: Pass through the smallest ramp " + cond + " Times.\nTimes passed: " + gate.getTimesPassed();
 
 
             }
@@ -218,7 +218,7 @@ public class VariableContainer : MonoBehaviour {
 
                 }
                 else {
-					tasktext.text = "Task: Pass through the gate " + cond + " Times.\nTimes passed: " + gate.getTimesPassed();
+					tasktext.text = "Task: Pass through the smallest ramp " + cond + " Times.\nTimes passed: " + gate.getTimesPassed();
 
                 }
 
