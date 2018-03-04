@@ -67,9 +67,10 @@ public class VariableContainer : MonoBehaviour {
     }
 
 	void Update () {
+            AudioListener.volume = PlayerPrefs.GetFloat("volume", 1);
 
-        // Set the task 
-        if (task != "" && cond != "" && !bll.taskStatus()) {
+            // Set the task 
+            if (task != "" && cond != "" && !bll.taskStatus()) {
            
             audioSource.PlayOneShot(onemoreturn, 1f);
             // checking the task type.
