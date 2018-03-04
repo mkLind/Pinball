@@ -39,11 +39,13 @@ public class StoryTrigger : MonoBehaviour {
 	public GameObject Button1;
 	public GameObject Button2;
 
+	public bool ended;
+
 	// Use this for initialization
 	void Start () {
         // Position the window and set the story element to un triggered state
 		//windowR = new Rect(0, 0, Screen.width, Screen.height);
-
+		ended = false;
         triggered = false;
         active = true;
         followingPromptId = "s1";
@@ -184,12 +186,15 @@ public class StoryTrigger : MonoBehaviour {
 		condition = new List<string> ();
 		cont.SetTaskAndCond (currentTask, currentCondition);
 	}
-		
+
+	public void setEnded(){
+		ended = true;
+	}
 
     // Set the element to triggered state and freeze the scene
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Ball") && !behav.taskStatus())
+        if (other.gameObject.CompareTag("Ball") && !behav.taskStatus() && ended == false)
         {
             FetchText(followingPromptId);
             triggered = true;
@@ -239,28 +244,30 @@ public class StoryTrigger : MonoBehaviour {
 
     public void ActivateNextTask()
     {
-        FetchText(followingPromptId);
-        triggered = true;
-		//Updating the storypanel canvaselements
-		if (triggered) {
-			storyPanel.SetActive(true);
+		if(ended == false){
+	        FetchText(followingPromptId);
+	        triggered = true;
+			//Updating the storypanel canvaselements
+			if (triggered) {
+				storyPanel.SetActive(true);
 
-			//Set the storytext
-			storyText.GetComponent<Text> ().text = Text;
-			//Button 1
-			if (options [0] != null) {
-				buttonText1.GetComponent<Text> ().text = options [0];
+				//Set the storytext
+				storyText.GetComponent<Text> ().text = Text;
+				//Button 1
+				if (options [0] != null) {
+					buttonText1.GetComponent<Text> ().text = options [0];
+				}
+
+				if (options.Count == 2) {
+					Button2.SetActive (true);
+					buttonText2.GetComponent<Text> ().text = options[1];
+
+				} else {
+					Button2.SetActive (false);
+				}
 			}
-
-			if (options.Count == 2) {
-				Button2.SetActive (true);
-				buttonText2.GetComponent<Text> ().text = options[1];
-
-			} else {
-				Button2.SetActive (false);
-			}
+	        Time.timeScale = 0; // scene freezes 
 		}
-        Time.timeScale = 0; // scene freezes 
     }
 
     void FetchText(string id) {

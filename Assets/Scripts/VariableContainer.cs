@@ -74,16 +74,21 @@ public class VariableContainer : MonoBehaviour {
             audioSource.PlayOneShot(onemoreturn, 1f);
             // checking the task type.
             if (task=="main") {
-                Debug.Log("Setting task " + task);
-                //ei toimi
-                GameObject.Find("Canvas").GetComponent<PauseMenu>().endScreenUI.SetActive(true);
-
+                //toimii !
+				GameObject.Find ("StoryElement").GetComponent<StoryTrigger>().setEnded();
+				GameObject.Find("Canvas").GetComponent<PauseMenu>().endScreenUI.SetActive(true);
             }
-            if (task == "bumpers")
+            else if (task == "bumpers")
             {
                 Debug.Log("Setting task " + task);
 
                 bumpCond = int.Parse(cond);
+
+				//If in s5 you run through the corridor instead of sneaking, the right sidedoor lowers
+				if (bumpCond == 1000) {
+					GameObject.Find ("RightLowering").GetComponent<SideDoorBehaviour> ().lowerDoor ();
+				}
+
                 tasktext.text = "Task: Raise your score with " + cond + " points."; // set the task text to indicate score challenge
                 currentScore = bll.getScore();
                 targetScore = currentScore + bumpCond;
@@ -101,6 +106,12 @@ public class VariableContainer : MonoBehaviour {
                 {
                     goal[i] = (Array.IndexOf(abcTriggers, cond.ToCharArray()[i]));
                 }
+
+				//If in s4 you flee from the orc the left sidedoor lowers
+				if (cond == "BAC") {
+					GameObject.Find ("LeftLowering").GetComponent<SideDoorBehaviour> ().lowerDoor ();
+				}
+
                 abcTriggerGroup.SetTaskActive(goal);
                 taskActive = true;
                 bll.setTaskActive();
@@ -178,9 +189,7 @@ public class VariableContainer : MonoBehaviour {
         }
         // if task is active in ball, update task
         if (bll.taskStatus()) {
-
             // check task type
-            
             if (task == "bumpers") {
                 currentScore = bll.getScore();
                 // Check task condition, if met reset task data

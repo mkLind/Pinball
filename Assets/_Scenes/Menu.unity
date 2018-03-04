@@ -526,7 +526,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\nT\xE4h\xE4n credits\nsdf\nsdf\nfds\nfsd324\n\n45\n353\n\n2552\n\n\n\n255\n\n\n\n2352124"
+  m_Text: "\nOld Parchment Paper image by cron at opengameart.org Licensed under CC0
+    1.0\n\nBlackChancery Font by Doug Miles\n\nT\xE4h\xE4n credits\n\nsdf\nsdf\nfds\nfsd324\n\n45\n353\n\n2552\n\n\n\n255\n\n\n\n2352124"
 --- !u!222 &263825425
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1784,6 +1785,8 @@ GameObject:
   - component: {fileID: 1086132309}
   - component: {fileID: 1086132308}
   - component: {fileID: 1086132312}
+  - component: {fileID: 1086132314}
+  - component: {fileID: 1086132313}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1883,6 +1886,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: f1315fbbb98a0fb44bfdd05e8f337bf7, type: 2}
+--- !u!114 &1086132313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1086132307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dab86ada46555449c8757c01536157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!225 &1086132314
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1086132307}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1093781999
 GameObject:
   m_ObjectHideFlags: 0
@@ -2664,8 +2689,8 @@ Camera:
   m_GameObject: {fileID: 1685400360}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

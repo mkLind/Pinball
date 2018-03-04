@@ -52,7 +52,7 @@
   <prompt id = "s5">
     <text>"Behind the door there is a suspicious corridor.  "</text>
     <option text ="Run through the corridor">
-      <next task="bumpers" cond ="500">s6</next>
+      <next task="bumpers" cond ="1000">s6</next>
     </option>
     <option text ="Carefully sneak through the corridor">
       <next task="ABCtriggers" cond ="CBA">s7</next>
@@ -61,8 +61,8 @@
 
   <prompt id = "s6">
     <text>"Your carelessness set off a trap. You died."</text>
-    <option text ="Main menu">
-      <next task="main" cond ="">s1</next>
+    <option text ="Continue">
+      <next task="main" cond ="dead">s1</next>
     </option>
     
   </prompt>
@@ -102,10 +102,10 @@
    <prompt id = "s7.5">
     <text>"The dragon reveals to you that the princess is evil. Angry princess attacks!"</text>
     <option text ="Engarde!">
-      <next task="bumpers" cond ="500"> s10.2</next>
+      <next task="bumpers" cond ="1500"> s10.2</next>
     </option>
     <option text ="Flee!">
-      <next task="gate" cond ="2">s11</next>
+      <next task="gate" cond ="3">s11</next>
     </option>
   </prompt>
   
@@ -113,7 +113,7 @@
   <prompt id = "s8">
     <text>"The dragon attacks"</text>
     <option text ="Aim for its heart.">
-      <next task="bumpers" cond ="500"> s10.1</next>
+      <next task="bumpers" cond ="1500"> s10.1</next>
     </option>
     <option text ="Aim for its head.">
       <next task="trap" cond ="hit">s11</next>
@@ -123,24 +123,24 @@
 
   <prompt id = "s10.1">
     <text>"You killed the dragon. All is well again."</text>
-    <option text ="Back to the main menu.">
-      <next task="main" cond ="">s1</next>
+    <option text ="Continue">
+      <next task="main" cond ="dead">s1</next>
     </option>
   
   </prompt>
   
     <prompt id = "s10.2">
     <text>"You saved the Dragon from the princess. All is well again!"</text>
-    <option text ="Back to the main menu.">
-      <next task="main" cond ="">s1</next>
+    <option text ="Continue">
+      <next task="main" cond ="dead">s1</next>
     </option>
   
   </prompt>
 
   <prompt id = "s11">
     <text>"The assailant got you! You died."</text>
-    <option text ="Main menu">
-      <next task="main" cond ="">s1</next>
+    <option text ="Continue">
+      <next task="main" cond ="dead">s1</next>
     </option>
   </prompt>
 
