@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public static bool gamePaused = false;
     public GameObject pauseMenuUI;
     public GameObject endScreenUI;
+	public GameObject storyPanel;
     private AudioSource gameMusicSource;
 
     private bool fadingIn, fadingOut;
@@ -46,7 +47,7 @@ public class PauseMenu : MonoBehaviour
         }
 
         //Pause menu is displayed when pushing esc
-        if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.Escape) && !storyPanel.activeInHierarchy)
         {
             if (gamePaused)
             {
