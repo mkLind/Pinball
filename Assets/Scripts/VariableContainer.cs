@@ -76,6 +76,7 @@ public class VariableContainer : MonoBehaviour {
             // checking the task type.
             if (task=="main") {
                 //toimii !
+				Destroy(GameObject.Find("Ball"));
 				GameObject.Find ("StoryElement").GetComponent<StoryTrigger>().setEnded();
 				GameObject.Find("Canvas").GetComponent<PauseMenu>().endScreenUI.SetActive(true);
             }
