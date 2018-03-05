@@ -91,10 +91,15 @@ public class PlungerBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Debug.Log("KEY S IS ENABLED: " + isKeyEnabled);
         //Keyboard input. Checked key explicitly so touch events do not register.
         //AnimatorStateInfo inf = anim.GetCurrentAnimatorStateInfo(0); 
 
         // if s is pressed
+        if (isKeyEnabled) {
+            anim.SetTrigger(back);
+
+        }
         
         
         if (Input.GetAxis(inputName) == 1 && isKeyEnabled)
@@ -150,6 +155,8 @@ public class PlungerBehavior : MonoBehaviour
             if (pressed)
             {
                 isKeyEnabled = false;
+
+
                 if (!forceApplied)
                 {
                     anim.ResetTrigger(load);
@@ -162,6 +169,7 @@ public class PlungerBehavior : MonoBehaviour
                     
 
                     forceApplied = true;
+                    
                     maxReached = false;
                 }
                 if (anim.GetAnimatorTransitionInfo(0).IsName("Load -> Shoot"))
@@ -229,7 +237,7 @@ public class PlungerBehavior : MonoBehaviour
         if (other.gameObject.CompareTag("Ball"))
         {
             anim.SetTrigger(idle);
-
+            isKeyEnabled = true;
             ballInTouch = true;
         }
     }
