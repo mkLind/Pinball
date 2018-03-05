@@ -33,6 +33,7 @@ public class PlungerBehavior : MonoBehaviour
     public int idle;
     public int back;
     public bool ballInTouch;
+    public bool isKeyEnabled;
 
 
     private AudioSource audioSource;
@@ -46,6 +47,7 @@ public class PlungerBehavior : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        isKeyEnabled = true;
         audioSource = GetComponent<AudioSource>();
         shoot = Animator.StringToHash("Shoot");
 
@@ -95,7 +97,7 @@ public class PlungerBehavior : MonoBehaviour
         // if s is pressed
         
         
-        if (Input.GetAxis(inputName) == 1)
+        if (Input.GetAxis(inputName) == 1 && isKeyEnabled)
         {
             pressed = true;
 
@@ -147,7 +149,7 @@ public class PlungerBehavior : MonoBehaviour
             // Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
             if (pressed)
             {
-              
+                isKeyEnabled = false;
                 if (!forceApplied)
                 {
                     anim.ResetTrigger(load);
@@ -209,8 +211,9 @@ public class PlungerBehavior : MonoBehaviour
                     currentPos = plunger.position.z;
                     forceApplied = false;
                     pressed = false;
-                    anim.ResetTrigger(shoot);
-                  
+                    anim.ResetTrigger(idle);
+                    isKeyEnabled = true;
+                    
                 }
 
             }
