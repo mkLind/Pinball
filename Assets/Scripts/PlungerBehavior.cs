@@ -105,7 +105,6 @@ public class PlungerBehavior : MonoBehaviour
             if (pressed)
             {
                 anim.SetTrigger(load);
-                anim.ResetTrigger(shoot);
                 anim.ResetTrigger(idle);
                 anim.ResetTrigger(back);
             }
@@ -148,49 +147,32 @@ public class PlungerBehavior : MonoBehaviour
             // Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
             if (pressed)
             {
-                if (!forceApplied && maxReached)
+              
+                if (!forceApplied)
                 {
                     anim.ResetTrigger(load);
                     anim.SetTrigger(shoot);
 
                     //plunger.AddForce (transform.forward * plungerEnergy * damper);
-
-
-
-
+                  
+                 
+                       
+                    
 
                     forceApplied = true;
                     maxReached = false;
                 }
-                if (anim.GetAnimatorTransitionInfo(0).IsName("Idle -> Load") && !maxReached)
+                if (anim.GetAnimatorTransitionInfo(0).IsName("Load -> Shoot"))
                 {
-                    if (anim.GetAnimatorTransitionInfo(0).IsName("Load -> Shoot"))
-                    {
-                        anim.SetTrigger(back);
-                        anim.ResetTrigger(shoot);
-
-                        if (ballInTouch)
-                        {
-                            GameObject.Find("Ball").GetComponent<Rigidbody>().AddForce(transform.forward * plungerEnergy * damper);
-                            ballInTouch = false;
-                        }
-                    }
-                }
-                else
-                {
-                    anim.SetTrigger(idle);
-                    anim.ResetTrigger(load);
+                    anim.SetTrigger(back);
                     anim.ResetTrigger(shoot);
-                    anim.ResetTrigger(back);
+
                     if (ballInTouch)
                     {
                         GameObject.Find("Ball").GetComponent<Rigidbody>().AddForce(transform.forward * plungerEnergy * damper);
                         ballInTouch = false;
                     }
                 }
-
-             
-             
 
                     // if plunger going up
                     if (plungerEnergy > 0 && forceApplied)
