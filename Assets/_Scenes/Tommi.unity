@@ -1766,7 +1766,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 201256103}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.95, y: 1.5, z: -6.48}
+  m_LocalPosition: {x: 0.95, y: 0.82, z: -6.48}
   m_LocalScale: {x: 0.83, y: 1, z: 0.22}
   m_Children: []
   m_Father: {fileID: 1173225469}
@@ -7828,10 +7828,10 @@ MonoBehaviour:
   maxPos: -7
   pressed: 0
   min: 0
-  max: -100
+  max: -70
   current: -1
   plungerEnergy: 0
-  plungerEnergyAddition: 6
+  plungerEnergyAddition: 9
   plungerLoadSpeed: 0
   damper: 1
   forceApplied: 0
@@ -7846,6 +7846,7 @@ MonoBehaviour:
   idle: 0
   back: 0
   ballInTouch: 0
+  isKeyEnabled: 0
 --- !u!65 &949249971
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7856,8 +7857,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.155747, z: 8.089007}
-  m_Center: {x: 0.0000025003549, y: 0.5779125, z: -3.544551}
+  m_Size: {x: 2.586576, y: 2.155747, z: 8.08901}
+  m_Center: {x: -0.17387363, y: 0.57792497, z: -3.544546}
 --- !u!64 &949249972
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17028,6 +17029,7 @@ MonoBehaviour:
   idle: 0
   back: 0
   ballInTouch: 0
+  isKeyEnabled: 0
 --- !u!54 &1960886961
 Rigidbody:
   m_ObjectHideFlags: 0
