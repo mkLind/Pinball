@@ -45,6 +45,7 @@ public class StoryTrigger : MonoBehaviour {
 	void Start () {
         // Position the window and set the story element to un triggered state
 		//windowR = new Rect(0, 0, Screen.width, Screen.height);
+		Button2.SetActive (true);
 		ended = false;
         triggered = false;
         active = true;
