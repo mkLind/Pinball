@@ -7831,7 +7831,7 @@ MonoBehaviour:
   max: -70
   current: -1
   plungerEnergy: 0
-  plungerEnergyAddition: 9
+  plungerEnergyAddition: 10
   plungerLoadSpeed: 0
   damper: 1
   forceApplied: 0
