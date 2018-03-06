@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 27d530430a59d304ba17908529689094
+guid: 8b65c8816d3326c45b97335f00e3f45f
 timeCreated: 1519761244
 licenseType: Free
 ModelImporter:
@@ -8,6 +8,7 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: unnamed
+    2100002: None__strightRampUV_001
     2300000: //RootNode
     3300000: //RootNode
     4300000: Ramp2
@@ -17,8 +18,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: unnamed
-    second: {fileID: 2100000, guid: adb4181d184030b4d890d3522943521c, type: 2}
+      name: None__strightRampUV_001
+    second: {fileID: 2100000, guid: 2216b7c49c059df43bd16d85a5b64b9a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
