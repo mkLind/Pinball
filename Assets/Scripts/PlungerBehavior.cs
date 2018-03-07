@@ -96,6 +96,13 @@ public class PlungerBehavior : MonoBehaviour
         //AnimatorStateInfo inf = anim.GetCurrentAnimatorStateInfo(0); 
 
         // if s is pressed
+        if (Input.GetAxis(inputName) == 1)
+        {
+            Debug.Log("S-key is down");
+        }
+        else {
+            Debug.Log("S-key is up");
+        }
         if (isKeyEnabled) {
             anim.SetTrigger(back);
 
@@ -172,10 +179,10 @@ public class PlungerBehavior : MonoBehaviour
                     
                     maxReached = false;
                 }
-				Debug.Log("1: " + Animator.StringToHash("Load -> Shoot"));
+	
                 if (anim.GetAnimatorTransitionInfo(0).IsName("Load -> Shoot"))
                 {
-					Debug.Log("222222: " + Animator.StringToHash("Load -> Shoot"));
+			
                     anim.SetTrigger(back);
                     anim.ResetTrigger(shoot);
 
@@ -186,7 +193,7 @@ public class PlungerBehavior : MonoBehaviour
                     }
                 }
 
-                    // if plunger going up
+                    // if plunger energy depleating after force has been applied
                     if (plungerEnergy > 0 && forceApplied)
                 {
 
