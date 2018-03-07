@@ -34,6 +34,8 @@ public class PlungerBehavior : MonoBehaviour
     public int back;
     public bool ballInTouch;
     public bool isKeyEnabled;
+    public bool isKeyDown;
+
 
 
     private AudioSource audioSource;
@@ -48,6 +50,7 @@ public class PlungerBehavior : MonoBehaviour
     void Start()
     {
         isKeyEnabled = true;
+        isKeyDown = false;
         audioSource = GetComponent<AudioSource>();
         shoot = Animator.StringToHash("Shoot");
 
@@ -99,9 +102,11 @@ public class PlungerBehavior : MonoBehaviour
         if (Input.GetAxis(inputName) == 1)
         {
             Debug.Log("S-key is down");
+            isKeyDown = true;
         }
         else {
             Debug.Log("S-key is up");
+            isKeyDown = false;
         }
         if (isKeyEnabled) {
             anim.SetTrigger(back);
