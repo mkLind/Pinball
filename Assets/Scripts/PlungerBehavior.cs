@@ -8,7 +8,7 @@ public class PlungerBehavior : MonoBehaviour
     public float minPos = 0f;
     public float currentPos = 0f;
     public float maxPos = -0f;
-    public bool pressed;
+    public bool hasBeenPressed;
     public int min;
     public int max;
     public int current;
@@ -61,7 +61,7 @@ public class PlungerBehavior : MonoBehaviour
 
 
 
-        pressed = false;
+        hasBeenPressed = false;
         anim = GetComponent<Animator>();
         maxReached = false;
 
@@ -94,34 +94,28 @@ public class PlungerBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Debug.Log("KEY S IS ENABLED: " + isKeyEnabled);
+        Debug.Log("max Reached: " + maxReached);
         //Keyboard input. Checked key explicitly so touch events do not register.
         //AnimatorStateInfo inf = anim.GetCurrentAnimatorStateInfo(0); 
 
         // if s is pressed
-        if (Input.GetAxis(inputName) == 1)
-        {
-            Debug.Log("S-key is down");
-            isKeyDown = true;
-        }
-        else {
-            Debug.Log("S-key is up");
-            isKeyDown = false;
-        }
-        if (isKeyEnabled) {
+    
+        if (isKeyEnabled  && !isKeyDown) {
             anim.SetTrigger(back);
+            anim.ResetTrigger(shoot);
+            anim.ResetTrigger(load);
 
         }
-        
-        
+
+
         if (Input.GetAxis(inputName) == 1 && isKeyEnabled)
         {
-            pressed = true;
+            hasBeenPressed = true;
 
             if (!audioSource.isPlaying)
                 audioSource.Play();
 
-            if (pressed)
+            if (hasBeenPressed)
             {
                 anim.SetTrigger(load);
                 anim.ResetTrigger(idle);
@@ -162,9 +156,19 @@ public class PlungerBehavior : MonoBehaviour
         }
         else
         {
+            if (Input.GetAxis(inputName) == 1)
+            {
+
+                isKeyDown = true;
+            }
+            else
+            {
+
+                isKeyDown = false;
+            }
 
             // Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
-            if (pressed)
+            if (hasBeenPressed && !isKeyDown)
             {
                 isKeyEnabled = false;
 
@@ -175,19 +179,19 @@ public class PlungerBehavior : MonoBehaviour
                     anim.SetTrigger(shoot);
 
                     //plunger.AddForce (transform.forward * plungerEnergy * damper);
-                  
-                 
-                       
-                    
+
+
+
+
 
                     forceApplied = true;
-                    
+
                     maxReached = false;
                 }
-	
+
                 if (anim.GetAnimatorTransitionInfo(0).IsName("Load -> Shoot"))
                 {
-			
+
                     anim.SetTrigger(back);
                     anim.ResetTrigger(shoot);
 
@@ -198,8 +202,8 @@ public class PlungerBehavior : MonoBehaviour
                     }
                 }
 
-                    // if plunger energy depleating after force has been applied
-                    if (plungerEnergy > 0 && forceApplied)
+                // if plunger energy depleating after force has been applied
+                if (plungerEnergy > 0 && forceApplied)
                 {
 
 
@@ -214,9 +218,9 @@ public class PlungerBehavior : MonoBehaviour
 
                     plungerEnergy -= plungerEnergyAddition;
                     current += 1 * (int)plungerEnergy;
-                        
-                    
-                    
+
+
+
                 }
                 else
                 {
@@ -231,13 +235,13 @@ public class PlungerBehavior : MonoBehaviour
                     current = min - 1;
                     currentPos = plunger.position.z;
                     forceApplied = false;
-                    pressed = false;
+                    hasBeenPressed = false;
                     anim.ResetTrigger(idle);
                     isKeyEnabled = true;
-                    
+
                 }
 
-            }
+            } 
         }
 
 
