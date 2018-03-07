@@ -99,7 +99,17 @@ public class PlungerBehavior : MonoBehaviour
         //AnimatorStateInfo inf = anim.GetCurrentAnimatorStateInfo(0); 
 
         // if s is pressed
-    
+        if (Input.GetAxis(inputName) == 1)
+        {
+
+            isKeyDown = true;
+        }
+        else
+        {
+
+            isKeyDown = false;
+        }
+
         if (isKeyEnabled  && !isKeyDown) {
             anim.SetTrigger(back);
             anim.ResetTrigger(shoot);
@@ -108,7 +118,7 @@ public class PlungerBehavior : MonoBehaviour
         }
 
 
-        if (Input.GetAxis(inputName) == 1 && isKeyEnabled)
+        if (Input.GetAxis(inputName) == 1 && isKeyEnabled && ballInTouch)
         {
             hasBeenPressed = true;
 
@@ -156,16 +166,7 @@ public class PlungerBehavior : MonoBehaviour
         }
         else
         {
-            if (Input.GetAxis(inputName) == 1)
-            {
-
-                isKeyDown = true;
-            }
-            else
-            {
-
-                isKeyDown = false;
-            }
+            
 
             // Applies once an impulse to the plunger that in turn applies the force to the ball if the plunger and the ball collide.
             if (hasBeenPressed && !isKeyDown)
