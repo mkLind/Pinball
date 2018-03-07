@@ -94,7 +94,7 @@ public class PlungerBehavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log("max Reached: " + maxReached);
+        //Debug.Log("max Reached: " + maxReached);
         //Keyboard input. Checked key explicitly so touch events do not register.
         //AnimatorStateInfo inf = anim.GetCurrentAnimatorStateInfo(0); 
 
