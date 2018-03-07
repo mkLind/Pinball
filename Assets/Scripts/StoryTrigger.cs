@@ -202,14 +202,14 @@ public class StoryTrigger : MonoBehaviour {
 			//Updating the storypanel canvaselements
 			if (triggered) {
 				storyPanel.SetActive(true);
-
+				Button2.SetActive (true);
 				//Set the storytext
 				storyText.GetComponent<Text> ().text = Text;
 				//Button 1
 				if (options [0] != null) {
 					buttonText1.GetComponent<Text> ().text = options [0];
 				}
-
+				Debug.Log (options.Count);
 				if (options.Count == 2) {
 					Button2.SetActive (true);
 					buttonText2.GetComponent<Text> ().text = options[1];

@@ -110,7 +110,7 @@ public class VariableContainer : MonoBehaviour {
                 }
 
 				//If in s4 you flee from the orc the left sidedoor lowers
-				if (cond == "BAC") {
+				if (cond == "BA") {
 					GameObject.Find ("LeftLowering").GetComponent<SideDoorBehaviour> ().lowerDoor ();
 				}
 

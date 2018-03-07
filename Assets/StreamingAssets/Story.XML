@@ -45,7 +45,7 @@
       <next task="bumpers" cond ="500">s4.1</next>
     </option>
     <option text ="Dodge and flee">
-      <next task="ABCtriggers" cond ="BAC">s4.2</next>
+      <next task="ABCtriggers" cond ="BA">s4.2</next>
     </option>
   </prompt>
 

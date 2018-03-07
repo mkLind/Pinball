@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -526,45 +526,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-    Old Parchment Paper image by cron at opengameart.org Licensed under CC0 1.0
-
-
-    Music:
-
-    - Menu Music by DL sounds at dl-sounds.com
-
-    - Game Music by rhodesmas at freesound.org
-
-
-    Sound effects:
-
-    All sound effects are from freesound.org, from users:
-
-    - JaseDakota
-
-    - mikobuntu
-
-    - smokum
-
-    - walkerbelm
-
-    - erlingx
-
-    - ProjectsU012
-
-    - deleted_user_2195044
-
-    - ecodios
-
-    - milton.
-
-    - Claire.H
-
-
-
-'
+  m_Text: "\nArt:\n-Old Parchment Paper image by cron at opengameart.org Licensed
+    under CC0 1.0\n-Texture library \xA9 2018 Dmitriy Chugai\r\n-Stormy days skybox,
+    Jockum Skoglund\n\nMusic:\n- Menu Music by DL sounds at dl-sounds.com\n- Game
+    Music by rhodesmas at freesound.org\n\nSound effects:\nAll sound effects are from
+    freesound.org, from users:\n- JaseDakota\n- mikobuntu\n- smokum\n- walkerbelm\n-
+    erlingx\n- ProjectsU012\n- deleted_user_2195044\n- ecodios\n- milton.\n- Claire.H\n\n\n"
 --- !u!222 &263825425
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2747,7 +2714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.491}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
