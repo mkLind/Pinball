@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -484,7 +484,7 @@ RectTransform:
   m_GameObject: {fileID: 263825422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 398302378}
   m_RootOrder: 0
@@ -492,7 +492,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.000027700811, y: 0.00002539915}
-  m_SizeDelta: {x: 0, y: 300}
+  m_SizeDelta: {x: 0, y: 370}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &263825424
 MonoBehaviour:
@@ -526,8 +526,45 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\nOld Parchment Paper image by cron at opengameart.org Licensed under CC0
-    1.0\n\nBlackChancery Font by Doug Miles\n\nT\xE4h\xE4n credits\n\nsdf\nsdf\nfds\nfsd324\n\n45\n353\n\n2552\n\n\n\n255\n\n\n\n2352124"
+  m_Text: '
+
+    Old Parchment Paper image by cron at opengameart.org Licensed under CC0 1.0
+
+
+    Music:
+
+    - Menu Music by DL sounds at dl-sounds.com
+
+    - Game Music by rhodesmas at freesound.org
+
+
+    Sound effects:
+
+    All sound effects are from freesound.org, from users:
+
+    - JaseDakota
+
+    - mikobuntu
+
+    - smokum
+
+    - walkerbelm
+
+    - erlingx
+
+    - ProjectsU012
+
+    - deleted_user_2195044
+
+    - ecodios
+
+    - milton.
+
+    - Claire.H
+
+
+
+'
 --- !u!222 &263825425
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2150,7 +2187,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -1.3100377, y: -9.010076}
-  m_SizeDelta: {x: 327.18, y: 149.95}
+  m_SizeDelta: {x: 327.18, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1213477409
 MonoBehaviour:
@@ -2553,7 +2590,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035, y: 108}
+  m_AnchoredPosition: {x: -0.000061035, y: 120}
   m_SizeDelta: {x: 342.02, y: 121.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1606387139
@@ -2620,7 +2657,7 @@ RectTransform:
   m_GameObject: {fileID: 1635976405}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1086132311}
   m_RootOrder: 1
@@ -2920,7 +2957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000010348809, y: -114.6}
+  m_AnchoredPosition: {x: 0.000010348809, y: -140}
   m_SizeDelta: {x: 133.93, y: 41.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1759883493
