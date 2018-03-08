@@ -174,21 +174,22 @@ public class PlungerBehavior : MonoBehaviour
                 isKeyEnabled = false;
 
 
-                if (!forceApplied)
-                {
-                    anim.ResetTrigger(load);
-                    anim.SetTrigger(shoot);
+				if (!forceApplied) {
+					anim.ResetTrigger (load);
+					anim.SetTrigger (shoot);
 
-                    //plunger.AddForce (transform.forward * plungerEnergy * damper);
-
+					//plunger.AddForce (transform.forward * plungerEnergy * damper);
 
 
 
 
-                    forceApplied = true;
 
-                    maxReached = false;
-                }
+					forceApplied = true;
+
+					maxReached = false;
+				} else {
+					forceApplied = false;
+				}
 
                 if (anim.GetAnimatorTransitionInfo(0).IsName("Load -> Shoot"))
                 {

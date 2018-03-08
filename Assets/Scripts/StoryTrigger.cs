@@ -194,7 +194,8 @@ public class StoryTrigger : MonoBehaviour {
 
     // Set the element to triggered state and freeze the scene
     void OnTriggerStay(Collider other)
-    {
+	{	
+		options.Clear ();
         if (other.gameObject.CompareTag("Ball") && !behav.taskStatus() && ended == false)
         {
             FetchText(followingPromptId);
@@ -244,7 +245,8 @@ public class StoryTrigger : MonoBehaviour {
     }
 
     public void ActivateNextTask()
-    {
+	{	
+		options.Clear ();
 		if(ended == false){
 	        FetchText(followingPromptId);
 	        triggered = true;

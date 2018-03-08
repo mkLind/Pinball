@@ -14,7 +14,7 @@ public class PlungerFix : MonoBehaviour {
 	{
 		if (other.gameObject.CompareTag("Ball"))
 		{
-			other.gameObject.transform.position = new Vector3(4.28f, 0.704f, -3.3f);
+			other.gameObject.transform.position = new Vector3(4.28f, 0.704f, 2.71f);
 		}
 	}
 }

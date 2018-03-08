@@ -55,7 +55,7 @@
       <next task="bumpers" cond ="1000">s6</next>
     </option>
     <option text ="Carefully sneak through the corridor">
-      <next task="ABCtriggers" cond ="CBA">s7</next>
+      <next task="ABCtriggers" cond ="CB">s7</next>
     </option>
   </prompt>
 

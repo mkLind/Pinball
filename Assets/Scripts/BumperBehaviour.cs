@@ -35,6 +35,9 @@ public class BumperBehaviour : MonoBehaviour {
 			if (gameObject.name == "ElevatedRampBooster") {
 				col.gameObject.GetComponent<Rigidbody>().AddForce (new Vector3(-force/2,0,0));
 			}
+			if (gameObject.name == "triangleR") {
+				col.gameObject.GetComponent<Rigidbody>().AddForce (new Vector3(-force/1.5f,0,0));
+			}
 			//Incrementing score that's in the ball script
 			bb.score = bb.score + 50;
 
